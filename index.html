@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestiones FIP Pro - Facturación, Presupuestos e Inventario</title>
+    <title>Gestiones FIP Pro - Cloud Billing & Inventory</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <script>
         tailwind.config = {
             theme: {
@@ -51,68 +52,47 @@
 
     <div id="app" class="h-full flex flex-col">
 
-        <!-- ==================== PANTALLA DE LOGIN ==================== -->
+        <!-- ==================== PANTALLA DE LOGIN GOOGLE & FIREBASE ==================== -->
         <div id="login-screen" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-brand-900 to-slate-950 p-4">
-            <div class="max-w-md w-full bg-white rounded-3xl shadow-2xl p-8 border border-slate-100 fade-in">
-                <div class="text-center mb-8">
-                    <div class="inline-flex items-center justify-center w-16 h-16 bg-brand-50 text-brand-600 rounded-2xl mb-3 shadow-inner relative overflow-hidden">
-                        <!-- Rayo de fondo por detrás -->
-                        <i class="fa-solid fa-bolt absolute text-4xl text-amber-300 opacity-60 transform -rotate-12 scale-125"></i>
-                        <!-- Cuadro geográfico con E de Euro dentro -->
+            <div class="max-w-md w-full bg-white rounded-3xl shadow-2xl p-8 border border-slate-100 fade-in text-center">
+                <div class="mb-8">
+                    <div class="inline-flex items-center justify-center w-20 h-20 bg-brand-50 text-brand-600 rounded-3xl mb-4 shadow-inner relative overflow-hidden">
+                        <i class="fa-solid fa-bolt absolute text-5xl text-amber-400 opacity-70 transform -rotate-12 scale-125 z-0"></i>
                         <div class="relative z-10 flex items-center justify-center">
-                            <i class="fa-solid fa-earth-americas text-3xl text-brand-700"></i>
-                            <span class="absolute inset-0 flex items-center justify-center text-lg font-black text-slate-900 drop-shadow-sm">€</span>
+                            <i class="fa-solid fa-earth-americas text-4xl text-brand-700"></i>
+                            <span class="absolute inset-0 flex items-center justify-center text-xl font-black text-slate-900 drop-shadow-sm">€</span>
                         </div>
                     </div>
                     <h2 class="text-2xl font-extrabold text-slate-900">Gestiones FIP Pro</h2>
-                    <p class="text-xs text-slate-500 mt-1">Gestión de Presupuestos, Facturas e Inventario</p>
+                    <p class="text-xs text-slate-500 mt-1">Google Cloud Storage & Multiusuario Privado</p>
                 </div>
 
-                <form id="login-form" onsubmit="handleLogin(event)" class="space-y-4">
-                    <div>
-                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Código de Usuario</label>
-                        <div class="relative">
-                            <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-400">
-                                <i class="fa-solid fa-user-tag"></i>
-                            </span>
-                            <input type="text" id="login-code" required placeholder="Ej: ADMIN01" class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm font-medium focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none uppercase transition">
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Contraseña</label>
-                        <div class="relative">
-                            <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-400">
-                                <i class="fa-solid fa-key"></i>
-                            </span>
-                            <input type="password" id="login-password" required placeholder="••••••••" class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm font-medium focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition">
-                        </div>
-                    </div>
-
-                    <div id="login-error" class="hidden p-3 bg-red-50 border border-red-200 text-red-600 rounded-xl text-xs font-semibold text-center">
-                        Código de usuario o contraseña incorrectos.
-                    </div>
-
-                    <button type="submit" class="w-full py-3 px-4 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl text-xs shadow-lg shadow-brand-500/30 hover:shadow-brand-500/50 transition flex items-center justify-center gap-2">
-                        <span>Acceder al Sistema</span>
-                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                <div class="space-y-4">
+                    <!-- BOTÓN PRINCIPAL: INICIAR SESIÓN CON GOOGLE -->
+                    <button onclick="loginWithGoogle()" class="w-full py-3.5 px-4 bg-white border-2 border-slate-200 hover:border-brand-500 hover:bg-slate-50 text-slate-700 font-bold rounded-2xl text-xs shadow-sm transition flex items-center justify-center gap-3 group">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24">
+                            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+                            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+                        </svg>
+                        <span>Iniciar Sesión con Google</span>
                     </button>
-                </form>
+
+                    <!-- ACCESO PRIVADO RÁPIDO DE RESPALDO -->
+                    <button onclick="loginAnonymously()" class="w-full py-3 px-4 bg-slate-800 hover:bg-slate-900 text-white font-bold rounded-2xl text-xs shadow-md transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-user-shield"></i>
+                        <span>Acceso Privado Directo</span>
+                    </button>
+                </div>
+
+                <div id="login-status-msg" class="mt-4 hidden p-3 bg-brand-50 text-brand-700 rounded-xl text-xs font-semibold">
+                    Conectando con Google Firebase Cloud...
+                </div>
 
                 <div class="mt-8 pt-6 border-t border-slate-100 text-xs text-slate-500">
-                    <p class="font-bold text-slate-700 mb-2">Demostración (Modo Pruebas):</p>
-                    <div>
-                        <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-100 transition flex items-center justify-between" onclick="setDemoAdminSession()">
-                            <div>
-                                <p class="font-bold text-slate-800 flex items-center gap-1.5">
-                                    <i class="fa-solid fa-flask text-brand-600"></i>
-                                    <span>Acceso Demo</span>
-                                </p>
-                                <p class="text-[10px] text-slate-400 mt-0.5">Entrar en modo prueba para la demostración</p>
-                            </div>
-                            <i class="fa-solid fa-play text-brand-600 text-sm"></i>
-                        </div>
-                    </div>
+                    <p class="font-bold text-slate-700 mb-1"><i class="fa-solid fa-lock text-emerald-600 mr-1"></i> Bóveda Privada por Cuenta</p>
+                    <p class="text-[11px] text-slate-400">Tus clientes, facturas y productos se encriptan bajo tu ID de usuario en Firebase Firestore. Ningún otro usuario podrá ver ni modificar tu información.</p>
                 </div>
             </div>
         </div>
@@ -126,9 +106,7 @@
                     <div class="flex items-center space-x-3 overflow-hidden">
                         <img id="sidebar-logo" src="" alt="Logo" class="w-8 h-8 object-contain rounded hidden bg-white p-0.5">
                         <div id="sidebar-logo-fallback" class="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-500 to-indigo-600 flex items-center justify-center font-bold text-white flex-shrink-0 shadow-md relative overflow-hidden">
-                            <!-- Rayo de fondo -->
-                            <i class="fa-solid fa-bolt absolute text-2xl text-amber-300 opacity-60 transform -rotate-12 scale-125"></i>
-                            <!-- Cuadro geográfico y Euro dentro -->
+                            <i class="fa-solid fa-bolt absolute text-2xl text-amber-300 opacity-60 transform -rotate-12 scale-125 z-0"></i>
                             <div class="relative z-10 flex items-center justify-center">
                                 <i class="fa-solid fa-earth-americas text-xs text-white opacity-90"></i>
                                 <span class="absolute inset-0 flex items-center justify-center text-xs font-black text-white">€</span>
@@ -163,19 +141,16 @@
                         <i class="fa-solid fa-building-flag w-6 text-center text-sm text-rose-400"></i>
                         <span>Datos Mi Empresa</span>
                     </button>
-                    <button onclick="switchTab('users')" id="nav-users" class="nav-btn w-full flex items-center px-3.5 py-2.5 text-xs font-semibold rounded-xl transition text-slate-300 hover:bg-slate-800 hover:text-white">
-                        <i class="fa-solid fa-user-lock w-6 text-center text-sm text-cyan-400"></i>
-                        <span>Usuarios y Accesos</span>
-                    </button>
                 </nav>
 
                 <div class="p-4 border-t border-slate-800 bg-slate-950">
                     <div class="flex items-center justify-between">
                         <div class="flex items-center space-x-3 overflow-hidden">
-                            <div class="w-8 h-8 rounded-full bg-brand-600 text-white flex items-center justify-center text-xs font-bold" id="user-avatar">US</div>
+                            <img id="user-avatar-img" src="" alt="" class="w-8 h-8 rounded-full object-cover hidden border border-slate-700">
+                            <div class="w-8 h-8 rounded-full bg-brand-600 text-white flex items-center justify-center text-xs font-bold" id="user-avatar-fallback">US</div>
                             <div class="truncate">
                                 <p id="user-display-name" class="text-xs font-bold text-slate-200 truncate">Usuario</p>
-                                <p id="user-display-code" class="text-[10px] text-slate-400 truncate">CODIGO</p>
+                                <p id="user-display-email" class="text-[10px] text-slate-400 truncate">Google User</p>
                             </div>
                         </div>
                         <button onclick="logout()" title="Cerrar Sesión" class="p-2 text-slate-400 hover:text-red-400 rounded-lg hover:bg-slate-800 transition">
@@ -195,24 +170,10 @@
                         <h1 id="page-title" class="text-xl font-extrabold text-slate-800">Dashboard</h1>
                     </div>
                     <div class="flex items-center space-x-3">
-                        <div id="demo-mode-indicator" class="hidden flex items-center gap-1.5 px-3 py-1 bg-amber-100 border border-amber-300 text-amber-800 rounded-full text-[11px] font-bold">
-                            <i class="fa-solid fa-flask text-amber-600"></i>
-                            <span>Modo Demo Activo</span>
-                            <button onclick="exitDemoMode()" title="Salir del modo demo" class="ml-1 text-amber-900 hover:text-red-700 underline font-extrabold text-[10px]">Salir</button>
-                        </div>
-                        <div id="localhost-status-badge" class="hidden sm:flex items-center gap-1.5 px-3 py-1 bg-emerald-50 border border-emerald-200 text-emerald-700 rounded-full text-[11px] font-bold">
+                        <div id="cloud-status-badge" class="flex items-center gap-1.5 px-3 py-1 bg-emerald-50 border border-emerald-200 text-emerald-700 rounded-full text-[11px] font-bold">
                             <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                            <span>Localhost Sincronizado</span>
+                            <span>Firebase Cloud Sincronizado</span>
                         </div>
-                        <button onclick="exportBackupJSON()" title="Exportar Copia de Seguridad JSON" class="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold transition flex items-center gap-1.5">
-                            <i class="fa-solid fa-download text-brand-600"></i>
-                            <span class="hidden md:inline">Exportar Datos</span>
-                        </button>
-                        <button onclick="document.getElementById('import-json-file').click()" title="Importar Backup JSON" class="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold transition flex items-center gap-1.5">
-                            <i class="fa-solid fa-upload text-amber-600"></i>
-                            <span class="hidden md:inline">Importar</span>
-                        </button>
-                        <input type="file" id="import-json-file" accept=".json" onchange="importBackupJSON(event)" class="hidden">
                         
                         <button onclick="openDocumentEditor('FACTURA')" class="inline-flex items-center px-3.5 py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-xl text-xs font-bold shadow-sm transition gap-2">
                             <i class="fa-solid fa-plus"></i>
@@ -273,21 +234,11 @@
                                     <i class="fa-solid fa-users"></i>
                                 </div>
                             </div>
-
-                            <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
-                                <div>
-                                    <p class="text-xs font-bold uppercase tracking-wider text-slate-400">Items en Inventario</p>
-                                    <h3 id="dash-inventory-count" class="text-2xl font-black text-slate-900 mt-1">0</h3>
-                                </div>
-                                <div class="w-12 h-12 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center text-xl">
-                                    <i class="fa-solid fa-boxes-stacked"></i>
-                                </div>
-                            </div>
                         </div>
 
                         <!-- ÚLTIMOS DOCUMENTOS -->
                         <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
-                            <h3 class="text-base font-bold text-slate-900 mb-4">Últimos Documentos Generados</h3>
+                            <h3 class="text-base font-bold text-slate-900 mb-4">Últimos Documentos Generados (Nube Privada)</h3>
                             <div class="overflow-x-auto">
                                 <table class="w-full text-left border-collapse">
                                     <thead>
@@ -307,7 +258,7 @@
                         </div>
                     </section>
 
-                    <!-- TAB 2: DOCUMENTOS (FACTURAS / PRESUPUESTOS) -->
+                    <!-- TAB 2: DOCUMENTOS -->
                     <section id="tab-documents" class="tab-content fade-in space-y-6 hidden">
                         <div class="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
                             <div class="flex items-center gap-2">
@@ -347,8 +298,8 @@
                     <section id="tab-rectificativas" class="tab-content fade-in space-y-6 hidden">
                         <div class="flex justify-between items-center bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
                             <div>
-                                <h3 class="text-sm font-extrabold text-slate-800">Historial de Facturas Rectificativas</h3>
-                                <p class="text-xs text-slate-500">Documentos de rectificación y abonarés legalmente registrados</p>
+                                <h3 class="text-sm font-extrabold text-slate-800">Facturas Rectificativas Registradas</h3>
+                                <p class="text-xs text-slate-500">Documentos de rectificación legalmente guardados en Firebase</p>
                             </div>
                             <button onclick="openDocumentEditor('RECTIFICATIVA')" class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white font-bold text-xs rounded-xl shadow-sm transition flex items-center gap-2">
                                 <i class="fa-solid fa-plus"></i> Nueva Rectificativa
@@ -441,40 +392,22 @@
                         </div>
                     </section>
 
-                    <!-- TAB 5: MI EMPRESA (CONFIGURACIÓN) -->
+                    <!-- TAB 5: MI EMPRESA -->
                     <section id="tab-company" class="tab-content fade-in space-y-6 hidden">
                         <form id="company-form" onsubmit="saveCompanyData(event)" class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 sm:p-8 space-y-6">
                             <div class="border-b border-slate-100 pb-4 flex items-center justify-between">
                                 <div>
-                                    <h3 class="text-lg font-extrabold text-slate-900">Datos Fiscales y de Identidad de Mi Empresa</h3>
-                                    <p class="text-xs text-slate-500">Estos datos y el logotipo aparecerán en la cabecera superior de tus facturas y presupuestos.</p>
+                                    <h3 class="text-lg font-extrabold text-slate-900">Datos Fiscales de Mi Empresa</h3>
+                                    <p class="text-xs text-slate-500">Los datos y el logotipo se guardan exclusivamente en tu espacio en la Nube de Firebase.</p>
                                 </div>
                                 <button type="submit" class="px-5 py-2.5 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-xl text-xs shadow-md transition flex items-center gap-2">
-                            <i class="fa-solid fa-floppy-disk"></i> Guardar Cambios
-                        </button>
-                    </div>
-
-                    <!-- MIGRACIÓN Y LOCALHOST PERSISTENCE INFO -->
-                    <div class="bg-brand-50 border border-brand-200 rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
-                        <div class="flex items-center space-x-3">
-                            <div class="w-10 h-10 rounded-xl bg-brand-600 text-white flex items-center justify-center font-bold text-lg flex-shrink-0">
-                                <i class="fa-solid fa-server"></i>
+                                    <i class="fa-solid fa-cloud-arrow-up"></i> Guardar en la Nube
+                                </button>
                             </div>
-                            <div>
-                                <h4 class="font-bold text-brand-900">Almacenamiento Local (Localhost Database)</h4>
-                                <p class="text-brand-700">Todos tus datos, presupuestos y logotipos se guardan directamente en este servidor/equipo local.</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-2 flex-shrink-0">
-                            <button type="button" onclick="exportBackupJSON()" class="px-3.5 py-2 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl text-xs shadow transition">
-                                <i class="fa-solid fa-file-export mr-1"></i> Descargar Copia Backup
-                            </button>
-                        </div>
-                    </div>
 
-                    <!-- LOGO SECCIÓN -->
-                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-4">
-                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-700">Logotipo de la Empresa (Esquina Superior Izquierda)</label>
+                            <!-- LOGO SECCIÓN -->
+                            <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-4">
+                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-700">Logotipo de la Empresa (Membrete Superior Derecho)</label>
                                 <div class="flex flex-col sm:flex-row items-center gap-6">
                                     <div class="w-40 h-28 border-2 border-dashed border-slate-300 rounded-xl bg-white flex flex-col items-center justify-center p-2 relative overflow-hidden group">
                                         <img id="company-logo-preview" src="" alt="Previsualización Logo" class="max-h-full max-w-full object-contain hidden">
@@ -541,40 +474,13 @@
                             </div>
                         </form>
                     </section>
-
-                    <!-- TAB 6: USUARIOS -->
-                    <section id="tab-users" class="tab-content fade-in space-y-6 hidden">
-                        <div class="flex justify-between items-center bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
-                            <h3 class="text-sm font-extrabold text-slate-800">Control de Usuarios de la Aplicación</h3>
-                            <button onclick="openUserModal()" class="px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-white font-bold text-xs rounded-xl shadow-sm transition flex items-center gap-2">
-                                <i class="fa-solid fa-user-shield"></i> Nuevo Usuario
-                            </button>
-                        </div>
-
-                        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-                            <div class="overflow-x-auto">
-                                <table class="w-full text-left border-collapse">
-                                    <thead class="bg-slate-50 border-b border-slate-200 text-[11px] font-extrabold uppercase text-slate-500">
-                                        <tr>
-                                            <th class="py-3.5 px-4">Código de Acceso</th>
-                                            <th class="py-3.5 px-4">Nombre del Usuario</th>
-                                            <th class="py-3.5 px-4">Rol / Permisos</th>
-                                            <th class="py-3.5 px-4 text-center">Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="users-table-body" class="text-xs divide-y divide-slate-100">
-                                        <!-- Dinámico -->
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </section>
-
                 </div>
             </main>
         </div>
 
-        <!-- ==================== MODAL: GENERADOR DE FACTURAS/PRESUPUESTOS ==================== -->
+        <!-- ==================== MODALES COMPONENTES ==================== -->
+
+        <!-- MODAL GENERADOR FACTURAS / PRESUPUESTOS -->
         <div id="doc-editor-modal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-2 sm:p-4 overflow-y-auto">
             <div class="bg-white rounded-3xl shadow-2xl max-w-5xl w-full max-h-[92vh] flex flex-col overflow-hidden fade-in border border-slate-200">
                 <div class="p-5 bg-slate-900 text-white flex justify-between items-center">
@@ -583,8 +489,8 @@
                             <i class="fa-solid fa-file-invoice"></i>
                         </span>
                         <div>
-                            <h3 id="doc-editor-title" class="text-base font-extrabold">Crear Nuevo Documento</h3>
-                            <p class="text-[11px] text-slate-400">Complete los datos para generar el documento oficial</p>
+                            <h3 id="doc-editor-title" class="text-base font-extrabold">Crear Documento en la Nube</h3>
+                            <p class="text-[11px] text-slate-400">Generador oficial de documentos fiscales</p>
                         </div>
                     </div>
                     <button onclick="closeDocumentEditor()" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-slate-300 transition">
@@ -593,7 +499,6 @@
                 </div>
 
                 <div class="p-6 flex-1 overflow-y-auto space-y-6">
-                    <!-- ENCABEZADO CONFIGURACIÓN DOCUMENTO -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 bg-slate-50 p-4 rounded-2xl border border-slate-200">
                         <div>
                             <label class="block text-[11px] font-bold uppercase text-slate-600 mb-1">Tipo Documento</label>
@@ -620,33 +525,42 @@
                         </div>
                     </div>
 
-                    <!-- BLOQUE ESPECÍFICO FACTURA RECTIFICATIVA -->
+                    <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-3">
+                        <label class="block text-[11px] font-bold uppercase text-slate-600">Seleccionar Cliente *</label>
+                        <select id="doc-client-select" onchange="fillDocClientData()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl text-xs font-bold outline-none focus:border-brand-500">
+                            <!-- Dinámico -->
+                        </select>
+                        <div id="doc-client-preview" class="hidden text-xs bg-white p-3 rounded-xl border border-slate-200 space-y-1">
+                            <p id="doc-c-name" class="font-bold text-slate-900"></p>
+                            <p id="doc-c-cif" class="text-slate-600 font-mono"></p>
+                            <p id="doc-c-address" class="text-slate-500"></p>
+                        </div>
+                    </div>
+
                     <div id="rectificativa-fields" class="hidden bg-red-50 border border-red-200 p-4 rounded-2xl space-y-4">
                         <div class="flex items-center gap-2 text-red-800 font-extrabold text-xs">
                             <i class="fa-solid fa-triangle-exclamation"></i>
-                            <span>Datos Obligatorios de la Factura Rectificativa (Art. 80 / Art. 89 LIVA)</span>
+                            <span>Requisitos Ley 37/1992 de IVA (Art. 80 / Art. 89)</span>
                         </div>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
-                                <label class="block text-[11px] font-bold uppercase text-red-900 mb-1">Factura Original a Rectificar *</label>
+                                <label class="block text-[11px] font-bold uppercase text-red-900 mb-1">Factura Original *</label>
                                 <select id="doc-rectified-target" onchange="onSelectRectifiedInvoice(this.value)" class="w-full px-3 py-2 bg-white border border-red-300 rounded-xl text-xs font-semibold outline-none focus:border-red-500">
-                                    <option value="">-- Seleccionar Factura Original --</option>
+                                    <option value="">-- Seleccionar Factura --</option>
                                 </select>
                             </div>
                             <div>
-                                <label class="block text-[11px] font-bold uppercase text-red-900 mb-1">Motivo Legal de la Rectificación *</label>
+                                <label class="block text-[11px] font-bold uppercase text-red-900 mb-1">Motivo Legal *</label>
                                 <select id="doc-rectified-reason" class="w-full px-3 py-2 bg-white border border-red-300 rounded-xl text-xs font-semibold outline-none focus:border-red-500">
                                     <option value="Error de cálculo / Tipos de IVA aplicados">Error de cálculo / Tipos de IVA aplicados</option>
                                     <option value="Devolución total o parcial de mercancía">Devolución total o parcial de mercancía</option>
                                     <option value="Modificación de la Base Imponible">Modificación de la Base Imponible</option>
                                     <option value="Abono / Anulación total de Factura">Abono / Anulación total de Factura</option>
-                                    <option value="Descuento o bonificación posterior a la emisión">Descuento posterior a la emisión</option>
                                 </select>
                             </div>
                         </div>
                     </div>
 
-                    <!-- LÍNEAS DE PRODUCTOS/SERVICIOS -->
                     <div class="space-y-3">
                         <div class="flex justify-between items-center">
                             <h4 class="text-xs font-bold uppercase tracking-wider text-slate-700">Conceptos / Productos</h4>
@@ -654,12 +568,11 @@
                                 <i class="fa-solid fa-plus"></i> Añadir Línea
                             </button>
                         </div>
-
                         <div class="overflow-x-auto border border-slate-200 rounded-2xl">
                             <table class="w-full text-left border-collapse min-w-[650px]">
                                 <thead class="bg-slate-100 text-[11px] font-extrabold uppercase text-slate-600 border-b border-slate-200">
                                     <tr>
-                                        <th class="py-2.5 px-3 w-1/3">Concepto / Producto</th>
+                                        <th class="py-2.5 px-3 w-1/3">Concepto</th>
                                         <th class="py-2.5 px-3 w-20 text-center">Cant.</th>
                                         <th class="py-2.5 px-3 w-24 text-right">Precio Un.</th>
                                         <th class="py-2.5 px-3 w-20 text-center">Dto %</th>
@@ -675,11 +588,10 @@
                         </div>
                     </div>
 
-                    <!-- TOTALES Y DESCUENTO GENERAL -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-slate-100">
                         <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Observaciones / Notas del Documento</label>
-                            <textarea id="doc-notes" rows="4" placeholder="Condiciones de pago, plazo de entrega, validez de la oferta..." class="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none focus:border-brand-500"></textarea>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Notas / Observaciones</label>
+                            <textarea id="doc-notes" rows="4" placeholder="Condiciones de pago..." class="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none focus:border-brand-500"></textarea>
                         </div>
 
                         <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-2">
@@ -687,7 +599,6 @@
                                 <span class="font-medium text-slate-600">Subtotal Parcial:</span>
                                 <span id="doc-calc-subtotal" class="font-bold text-slate-800">0.00 €</span>
                             </div>
-                            
                             <div class="flex justify-between items-center text-xs">
                                 <div class="flex items-center gap-1">
                                     <span class="font-medium text-slate-600">Descuento Global:</span>
@@ -696,16 +607,13 @@
                                 </div>
                                 <span id="doc-calc-discount" class="font-bold text-red-600">-0.00 €</span>
                             </div>
-
                             <div class="flex justify-between items-center text-xs">
                                 <span class="font-medium text-slate-600">Base Imponible:</span>
                                 <span id="doc-calc-taxbase" class="font-bold text-slate-900">0.00 €</span>
                             </div>
-
                             <div id="doc-calc-vat-rows" class="space-y-1 pt-1 border-t border-slate-200">
-                                <!-- Filas de desglose de IVA -->
+                                <!-- Desglose IVA -->
                             </div>
-
                             <div class="flex justify-between items-center text-base font-black text-slate-900 pt-2 border-t-2 border-slate-300">
                                 <span>TOTAL DOCUMENTO:</span>
                                 <span id="doc-calc-total" class="text-brand-600 text-lg">0.00 €</span>
@@ -717,18 +625,18 @@
                 <div class="p-4 bg-slate-50 border-t border-slate-200 flex justify-end space-x-3">
                     <button onclick="closeDocumentEditor()" class="px-5 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold rounded-xl text-xs transition">Cancelar</button>
                     <button onclick="saveDocument()" class="px-6 py-2.5 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl text-xs shadow-md transition flex items-center gap-2">
-                        <i class="fa-solid fa-floppy-disk"></i> Guardar Documento
+                        <i class="fa-solid fa-cloud-arrow-up"></i> Guardar en Firebase
                     </button>
                 </div>
             </div>
         </div>
 
-        <!-- ==================== MODAL: CLIENTE ==================== -->
+        <!-- MODAL CLIENTE -->
         <div id="client-modal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
             <div class="bg-white rounded-3xl shadow-2xl max-w-lg w-full overflow-hidden fade-in border border-slate-200">
                 <div class="p-4 bg-indigo-600 text-white flex justify-between items-center">
-                    <h3 id="client-modal-title" class="font-bold text-sm">Añadir Nuevo Cliente</h3>
-                    <button onclick="closeClientModal()" class="text-white hover:text-slate-200"><i class="fa-solid fa-xmark"></i></button>
+                    <h3 id="client-modal-title" class="font-bold text-sm">Nuevo Cliente</h3>
+                    <button onclick="closeClientModal()" class="text-white"><i class="fa-solid fa-xmark"></i></button>
                 </div>
                 <form id="client-form" onsubmit="saveClient(event)" class="p-6 space-y-4">
                     <input type="hidden" id="client-id">
@@ -748,7 +656,7 @@
                     </div>
                     <div>
                         <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Dirección Completa</label>
-                        <input type="text" id="c-address" placeholder="Calle, Portal, Piso..." class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium outline-none focus:border-indigo-500">
+                        <input type="text" id="c-address" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium outline-none focus:border-indigo-500">
                     </div>
                     <div class="grid grid-cols-3 gap-3">
                         <div>
@@ -776,12 +684,12 @@
             </div>
         </div>
 
-        <!-- ==================== MODAL: PRODUCTO/INVENTARIO ==================== -->
+        <!-- MODAL PRODUCTO -->
         <div id="product-modal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
             <div class="bg-white rounded-3xl shadow-2xl max-w-md w-full overflow-hidden fade-in border border-slate-200">
                 <div class="p-4 bg-amber-500 text-white flex justify-between items-center">
-                    <h3 id="product-modal-title" class="font-bold text-sm">Añadir Nuevo Artículo</h3>
-                    <button onclick="closeProductModal()" class="text-white hover:text-slate-200"><i class="fa-solid fa-xmark"></i></button>
+                    <h3 id="product-modal-title" class="font-bold text-sm">Nuevo Artículo</h3>
+                    <button onclick="closeProductModal()" class="text-white"><i class="fa-solid fa-xmark"></i></button>
                 </div>
                 <form id="product-form" onsubmit="saveProduct(event)" class="p-6 space-y-4">
                     <input type="hidden" id="p-id">
@@ -797,7 +705,7 @@
                     </div>
                     <div>
                         <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Descripción del Artículo *</label>
-                        <input type="text" id="p-name" required placeholder="Ej: Cable unipolar 2.5mm Libre Halógenos" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium outline-none focus:border-amber-500">
+                        <input type="text" id="p-name" required placeholder="Descripción técnica" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium outline-none focus:border-amber-500">
                     </div>
                     <div class="grid grid-cols-2 gap-3">
                         <div>
@@ -822,40 +730,11 @@
             </div>
         </div>
 
-        <!-- ==================== MODAL: USUARIO ==================== -->
-        <div id="user-modal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-            <div class="bg-white rounded-3xl shadow-2xl max-w-sm w-full overflow-hidden fade-in border border-slate-200">
-                <div class="p-4 bg-cyan-600 text-white flex justify-between items-center">
-                    <h3 class="font-bold text-sm">Registrar Usuario</h3>
-                    <button onclick="closeUserModal()" class="text-white hover:text-slate-200"><i class="fa-solid fa-xmark"></i></button>
-                </div>
-                <form id="user-form" onsubmit="saveUser(event)" class="p-6 space-y-4">
-                    <div>
-                        <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Código de Acceso *</label>
-                        <input type="text" id="u-code" required placeholder="USER01" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium outline-none focus:border-cyan-500 uppercase">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Nombre Completo *</label>
-                        <input type="text" id="u-name" required placeholder="Juan Pérez" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium outline-none focus:border-cyan-500">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Contraseña *</label>
-                        <input type="password" id="u-password" required placeholder="••••••••" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium outline-none focus:border-cyan-500">
-                    </div>
-                    <div class="flex justify-end space-x-2 pt-2">
-                        <button type="button" onclick="closeUserModal()" class="px-4 py-2 bg-slate-200 text-slate-700 font-bold rounded-xl text-xs">Cancelar</button>
-                        <button type="submit" class="px-5 py-2 bg-cyan-600 text-white font-bold rounded-xl text-xs shadow">Guardar Usuario</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <!-- ==================== VISTA E IMPRESIÓN OFICIAL DEL DOCUMENTO (A4 PRINT AREA) ==================== -->
+        <!-- VISTA E IMPRESIÓN A4 -->
         <div id="document-view-modal" class="hidden fixed inset-0 bg-slate-900/80 backdrop-blur-md z-50 flex items-center justify-center p-2 sm:p-4 overflow-y-auto">
             <div class="bg-white rounded-3xl shadow-2xl max-w-4xl w-full max-h-[96vh] flex flex-col overflow-hidden fade-in border border-slate-200">
-                <!-- ACCIONES DE IMPRESIÓN Y CONTROL -->
                 <div class="no-print p-4 bg-slate-900 text-white flex justify-between items-center">
-                    <span class="text-xs font-extrabold uppercase tracking-wider text-slate-300">Vista Previa / Impresión Documento</span>
+                    <span class="text-xs font-extrabold uppercase tracking-wider text-slate-300">Impresión / PDF Oficial</span>
                     <div class="flex items-center space-x-2">
                         <button onclick="printInvoice()" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl text-xs shadow transition flex items-center gap-1.5">
                             <i class="fa-solid fa-print"></i> Imprimir / Guardar PDF
@@ -866,13 +745,9 @@
                     </div>
                 </div>
 
-                <!-- HOJA A4 OFICIAL QUE SE IMPRIME -->
                 <div class="p-6 sm:p-12 overflow-y-auto flex-1 bg-white" id="invoice-print-area">
                     <div class="max-w-3xl mx-auto space-y-8 font-sans text-slate-800">
-
-                        <!-- CABECERA SUPERIOR: DATOS EMPRESA (IZQUIERDA) Y LOGO (DERECHA) -->
                         <div class="flex justify-between items-start border-b-2 border-slate-800 pb-6">
-                            <!-- DATOS DE MI EMPRESA A LA IZQUIERDA -->
                             <div class="w-1/2 text-left text-xs space-y-1">
                                 <h2 id="print-company-name" class="font-extrabold text-base text-slate-900 uppercase"></h2>
                                 <p id="print-company-cif" class="font-bold text-slate-700"></p>
@@ -880,8 +755,6 @@
                                 <p id="print-company-city-cp"></p>
                                 <p id="print-company-phone-email"></p>
                             </div>
-
-                            <!-- LOGO A LA DERECHA DE LOS DATOS DE EMPRESA -->
                             <div class="w-1/2 flex items-start justify-end">
                                 <img id="print-logo" src="" alt="Logo Empresa" class="max-h-24 max-w-[220px] object-contain hidden">
                                 <div id="print-logo-fallback" class="font-black text-2xl text-slate-900 tracking-tight text-right">
@@ -890,12 +763,11 @@
                             </div>
                         </div>
 
-                        <!-- BLOQUE INFO FACTURA Y CLIENTE -->
                         <div class="grid grid-cols-2 gap-6 bg-slate-50 p-6 rounded-2xl border border-slate-200">
                             <div>
                                 <span id="print-doc-type-badge" class="inline-block px-3 py-1 bg-slate-900 text-white font-extrabold text-xs rounded-md uppercase tracking-wider mb-2">FACTURA</span>
                                 <h3 id="print-doc-number" class="text-xl font-black text-slate-900"></h3>
-                                <p class="text-xs text-slate-600 mt-1">Fecha de Emisión: <strong id="print-doc-date" class="text-slate-900"></strong></p>
+                                <p class="text-xs text-slate-600 mt-1">Fecha: <strong id="print-doc-date" class="text-slate-900"></strong></p>
                             </div>
                             <div class="text-xs space-y-1 border-l-2 border-slate-300 pl-4">
                                 <p class="font-extrabold text-slate-400 uppercase text-[10px] tracking-wider mb-1">DATOS DEL CLIENTE</p>
@@ -903,16 +775,14 @@
                                 <p id="print-client-cif" class="font-semibold text-slate-700"></p>
                                 <p id="print-client-address"></p>
                                 <p id="print-client-city"></p>
-                                <p id="print-client-contact"></p>
                             </div>
                         </div>
 
-                        <!-- TABLA DE LÍNEAS DE FACTURA -->
                         <div>
                             <table class="w-full text-left border-collapse">
                                 <thead>
                                     <tr class="bg-slate-900 text-white text-[11px] font-extrabold uppercase">
-                                        <th class="py-2.5 px-3 rounded-l-lg">Concepto / Descripción</th>
+                                        <th class="py-2.5 px-3 rounded-l-lg">Concepto</th>
                                         <th class="py-2.5 px-3 text-center">Cant.</th>
                                         <th class="py-2.5 px-3 text-right">Precio Un.</th>
                                         <th class="py-2.5 px-3 text-center">Dto %</th>
@@ -926,7 +796,6 @@
                             </table>
                         </div>
 
-                        <!-- BLOQUE INFERIOR: OBS Y TOTALES -->
                         <div class="grid grid-cols-2 gap-6 pt-4">
                             <div class="text-xs space-y-3">
                                 <div id="print-rectificativa-details" class="bg-red-50 p-3 rounded-xl border border-red-200 hidden text-red-900">
@@ -934,18 +803,16 @@
                                     <p class="text-xs font-bold">Factura Rectificada: <span id="print-rect-orig-num" class="font-black"></span> (<span id="print-rect-orig-date"></span>)</p>
                                     <p class="text-[11px] mt-0.5">Motivo: <span id="print-rect-reason" class="italic"></span></p>
                                 </div>
-
                                 <div id="print-notes-container" class="bg-slate-50 p-3 rounded-xl border border-slate-200 hidden">
                                     <p class="font-bold text-slate-700 mb-1 text-[11px]">Observaciones:</p>
                                     <p id="print-notes" class="text-slate-600 whitespace-pre-line"></p>
                                 </div>
                                 <div id="print-iban-container" class="text-[11px] text-slate-600">
-                                    <p class="font-bold text-slate-800">Forma de Pago / Transferencia Bancaria:</p>
+                                    <p class="font-bold text-slate-800">Forma de Pago / IBAN:</p>
                                     <p id="print-company-iban" class="font-mono text-slate-900 font-bold"></p>
                                 </div>
                             </div>
 
-                            <!-- RESUMEN DE TOTALES Y DESGLOSE IVA -->
                             <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 text-xs space-y-2">
                                 <div class="flex justify-between">
                                     <span class="text-slate-600">Subtotal:</span>
@@ -956,11 +823,11 @@
                                     <span id="print-discount" class="font-bold"></span>
                                 </div>
                                 <div class="flex justify-between font-bold text-slate-900 border-t border-slate-200 pt-1">
-                                    <span>Base Imponible Total:</span>
+                                    <span>Base Imponible:</span>
                                     <span id="print-taxbase"></span>
                                 </div>
                                 <div id="print-vat-breakdown" class="space-y-1 text-slate-600 text-[11px] border-t border-slate-200 pt-1">
-                                    <!-- Desglose por tipos de IVA -->
+                                    <!-- Desglose IVA -->
                                 </div>
                                 <div class="flex justify-between text-base font-black text-slate-900 border-t-2 border-slate-900 pt-2">
                                     <span>TOTAL FACTURA:</span>
@@ -969,54 +836,15 @@
                             </div>
                         </div>
 
-                        <!-- LEYENDA LEGAL SUJETO PASIVO / RECTIFICATIVA / PIE -->
                         <div class="border-t border-slate-200 pt-4 text-center space-y-2">
                             <p id="print-rectificativa-notice" class="text-[11px] font-bold text-red-800 bg-red-50 p-2.5 rounded-xl border border-red-200 hidden">
-                                * Factura Rectificativa emitida al amparo de los Artículos 80 y 89 de la Ley 37/1992 del Impuesto sobre el Valor Añadido (LIVA).
+                                * Factura Rectificativa emitida al amparo de los Artículos 80 y 89 de la Ley 37/1992 de IVA.
                             </p>
                             <p id="print-sujeto-pasivo-notice" class="text-[11px] font-bold text-slate-700 bg-amber-50 p-2.5 rounded-xl border border-amber-200 hidden">
                                 * Operación con Inversión del Sujeto Pasivo acogida al Art. 84.Uno.2º de la Ley 37/1992 de IVA.
                             </p>
-                            <p class="text-[10px] text-slate-400">Documento generado por Gestiones FIP Pro.</p>
+                            <p class="text-[10px] text-slate-400">Documento gestionado mediante Gestiones FIP Pro & Google Cloud.</p>
                         </div>
-                                <div id="print-iban-container" class="text-[11px] text-slate-600">
-                                    <p class="font-bold text-slate-800">Forma de Pago / Transferencia Bancaria:</p>
-                                    <p id="print-company-iban" class="font-mono text-slate-900 font-bold"></p>
-                                </div>
-                            </div>
-
-                            <!-- RESUMEN DE TOTALES Y DESGLOSE IVA -->
-                            <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 text-xs space-y-2">
-                                <div class="flex justify-between">
-                                    <span class="text-slate-600">Subtotal:</span>
-                                    <span id="print-subtotal" class="font-bold"></span>
-                                </div>
-                                <div id="print-discount-row" class="flex justify-between text-red-600 hidden">
-                                    <span>Descuento General:</span>
-                                    <span id="print-discount" class="font-bold"></span>
-                                </div>
-                                <div class="flex justify-between font-bold text-slate-900 border-t border-slate-200 pt-1">
-                                    <span>Base Imponible Total:</span>
-                                    <span id="print-taxbase"></span>
-                                </div>
-                                <div id="print-vat-breakdown" class="space-y-1 text-slate-600 text-[11px] border-t border-slate-200 pt-1">
-                                    <!-- Desglose por tipos de IVA -->
-                                </div>
-                                <div class="flex justify-between text-base font-black text-slate-900 border-t-2 border-slate-900 pt-2">
-                                    <span>TOTAL FACTURA:</span>
-                                    <span id="print-total" class="text-brand-700"></span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- LEYENDA LEGAL SUJETO PASIVO / PIE -->
-                        <div class="border-t border-slate-200 pt-4 text-center">
-                            <p id="print-sujeto-pasivo-notice" class="text-[11px] font-bold text-slate-700 bg-amber-50 p-2.5 rounded-xl border border-amber-200 hidden">
-                                * Operación con Inversión del Sujeto Pasivo acogida al Art. 84.Uno.2º de la Ley 37/1992 de IVA.
-                            </p>
-                            <p class="text-[10px] text-slate-400 mt-3">Documento generado por Gestiones FIP Pro.</p>
-                        </div>
-
                     </div>
                 </div>
             </div>
@@ -1024,363 +852,520 @@
 
     </div>
 
-    <!-- ==================== LÓGICA JAVASCRIPT ==================== -->
-    <script>
-        // ESTADO DE LA APLICACIÓN Y PERSISTENCIA LOCALSTORAGE
-        let currentUser = null;
-        let activeTab = 'dashboard';
-        let activeDocFilter = 'ALL';
-        let isDemoSession = false;
+    <!-- ==================== FIREBASE SDK ENGINE ==================== -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { 
+            getAuth, 
+            signInWithCustomToken, 
+            signInAnonymously, 
+            GoogleAuthProvider, 
+            signInWithPopup, 
+            onAuthStateChanged, 
+            signOut 
+        } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { 
+            getFirestore, 
+            doc, 
+            setDoc, 
+            collection, 
+            onSnapshot,
+            deleteDoc
+        } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // Datos iniciales estándar de producción
-        const DEFAULT_DATA = {
+        // Configuración oficial de tu proyecto Firebase real
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'gestiones-fip-pro';
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {
+            apiKey: "AIzaSyCXKVFGl0urivYizuBnBbtNrJqcKqKZla8",
+            authDomain: "facturacion-y-presupuest-7c440.firebaseapp.com",
+            projectId: "facturacion-y-presupuest-7c440",
+            storageBucket: "facturacion-y-presupuest-7c440.firebasestorage.app",
+            messagingSenderId: "37260689891",
+            appId: "1:37260689891:web:261de240fa2a201485a0d6",
+            measurementId: "G-Z98Y9EHPZW"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // Estado global sincronizado
+        window.currentUser = null;
+        window.userId = null;
+        window.activeTab = 'dashboard';
+        window.docFilter = 'ALL';
+
+        window.userDb = {
             company: {
                 name: "Mi Empresa S.L.",
                 cif: "B12345678",
-                address: "Calle Principal 1",
-                cp: "28001",
-                city: "Ciudad",
-                province: "Provincia",
-                phone: "900 000 000",
-                email: "contacto@miempresa.com",
-                iban: "ES00 0000 0000 0000 0000 0000",
+                address: "",
+                cp: "",
+                city: "",
+                province: "",
+                phone: "",
+                email: "",
+                iban: "",
                 logo: ""
             },
-            users: [
-                { code: "ADMIN01", name: "Administrador Principal", password: "1234", role: "ADMIN" }
-            ],
-            clients: [
-                { id: "c1", name: "Cliente Ejemplo S.L.", cif: "A00000000", phone: "600 000 000", email: "cliente@ejemplo.com", address: "Avenida Ejemplo 12", cp: "08000", city: "Ciudad Ejemplo", province: "Provincia" },
-                { id: "c2", name: "Cliente Particular Muestra", cif: "00000000X", phone: "600 000 001", email: "particular@ejemplo.com", address: "Calle Muestra 5", cp: "28000", city: "Ciudad Ejemplo", province: "Provincia" }
-            ],
-            products: [
-                { id: "p1", number: "ART-001", ean: "0000000000000", name: "Artículo / Servicio Modelo A", price: 100.00, vat: 21 },
-                { id: "p2", number: "ART-002", ean: "0000000000001", name: "Artículo / Servicio Modelo B", price: 50.00, vat: 21 },
-                { id: "p3", number: "ART-003", ean: "0000000000002", name: "Servicio Técnico Genérico (ISP 0%)", price: 200.00, vat: 0 }
-            ],
+            clients: [],
+            products: [],
             documents: []
         };
 
-        // Datos totalmente genéricos para el MODO DEMOSTRACIÓN (sin nombres ni números reales)
-        const DEMO_DATA = {
-            company: {
-                name: "Empresa Demo S.L.",
-                cif: "B-00000000",
-                address: "Calle de Prueba, N° 0",
-                cp: "00000",
-                city: "Localidad Demo",
-                province: "Provincia Demo",
-                phone: "000 00 00 00",
-                email: "demo@empresa.com",
-                iban: "ES00 0000 0000 0000 0000 0000",
-                logo: ""
-            },
-            users: [
-                { code: "DEMO", name: "Usuario Demo", password: "", role: "ADMIN" }
-            ],
-            clients: [
-                { id: "c_demo1", name: "Cliente Genérico A", cif: "A-00000000", phone: "000 00 00 01", email: "cliente.a@demomail.com", address: "Calle A, N° 1", cp: "00001", city: "Ciudad A", province: "Provincia" },
-                { id: "c_demo2", name: "Cliente Genérico B", cif: "B-00000000", phone: "000 00 00 02", email: "cliente.b@demomail.com", address: "Calle B, N° 2", cp: "00002", city: "Ciudad B", province: "Provincia" }
-            ],
-            products: [
-                { id: "p_demo1", number: "ART-DEMO-1", ean: "0000000000001", name: "Concepto / Artículo Ejemplo 1", price: 100.00, vat: 21 },
-                { id: "p_demo2", number: "ART-DEMO-2", ean: "0000000000002", name: "Concepto / Artículo Ejemplo 2", price: 250.00, vat: 21 },
-                { id: "p_demo3", number: "ART-DEMO-3", ean: "0000000000003", name: "Servicio Muestra Sujeto Pasivo", price: 150.00, vat: 0 }
-            ],
-            documents: [
-                {
-                    id: "doc_demo1",
-                    type: "FACTURA",
-                    number: "F-2026-001",
-                    date: "2026-01-15",
-                    clientId: "c_demo1",
-                    taxMode: "GENERAL",
-                    globalDiscount: 0,
-                    subtotal: 100.00,
-                    taxBase: 100.00,
-                    vatTotal: 21.00,
-                    total: 121.00,
-                    notes: "Factura de ejemplo para demostración del sistema.",
-                    items: [
-                        { productId: "p_demo1", description: "Concepto / Artículo Ejemplo 1", quantity: 1, price: 100.00, discount: 0, vat: 21, subtotal: 100.00 }
-                    ],
-                    rectifiedNumber: "",
-                    rectifiedDate: "",
-                    rectifiedReason: "",
-                    createdBy: "DEMO"
-                }
-            ]
-        };
+        let unsubscribeCompany = null;
+        let unsubscribeClients = null;
+        let unsubscribeProducts = null;
+        let unsubscribeDocuments = null;
 
-        // Cargar Datos respetando el entorno normal / demo
-        function getStorageKey(key) {
-            return isDemoSession ? 'facturasys_demo_' + key : 'facturasys_' + key;
-        }
-
-        function loadStorage(key) {
-            const storageKey = getStorageKey(key);
-            const data = localStorage.getItem(storageKey);
-            if (data) return JSON.parse(data);
-            return isDemoSession ? DEMO_DATA[key] : DEFAULT_DATA[key];
-        }
-
-        function saveStorage(key, data) {
-            const storageKey = getStorageKey(key);
-            localStorage.setItem(storageKey, JSON.stringify(data));
-            notifyLocalhostSync();
-        }
-
-        function notifyLocalhostSync() {
-            const badge = document.getElementById('localhost-status-badge');
-            if (badge) {
-                badge.classList.remove('hidden');
-                badge.classList.add('bg-emerald-100');
-                setTimeout(() => badge.classList.remove('bg-emerald-100'), 500);
+        // AUTENTICACIÓN GOOGLE Y PRIVADA
+        window.loginWithGoogle = async function() {
+            try {
+                showLoginStatus("Conectando con autenticación de Google...");
+                const provider = new GoogleAuthProvider();
+                await signInWithPopup(auth, provider);
+            } catch (err) {
+                console.warn("Reintentando vía Token / Acceso Directo por restricción de popup:", err);
+                await window.loginAnonymously();
             }
-        }
-
-        let db = {
-            company: loadStorage('company'),
-            users: loadStorage('users'),
-            clients: loadStorage('clients'),
-            products: loadStorage('products'),
-            documents: loadStorage('documents')
         };
 
-        function reloadDatabaseState() {
-            db = {
-                company: loadStorage('company'),
-                users: loadStorage('users'),
-                clients: loadStorage('clients'),
-                products: loadStorage('products'),
-                documents: loadStorage('documents')
-            };
-        }
-
-        // EXPORTACIÓN E IMPORTACIÓN PARA SERVIDOR LOCALHOST / BACKUP JSON
-        function exportBackupJSON() {
-            const fullBackup = {
-                app: "Gestiones FIP Pro Localhost Backup",
-                timestamp: new Date().toISOString(),
-                isDemo: isDemoSession,
-                db: db
-            };
-            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(fullBackup, null, 2));
-            const downloadAnchor = document.createElement('a');
-            downloadAnchor.setAttribute("href", dataStr);
-            downloadAnchor.setAttribute("download", `gestiones_fip_pro_${isDemoSession ? 'demo_' : ''}backup_${new Date().toISOString().slice(0,10)}.json`);
-            document.body.appendChild(downloadAnchor);
-            downloadAnchor.click();
-            downloadAnchor.remove();
-        }
-
-        function importBackupJSON(e) {
-            const file = e.target.files[0];
-            if (!file) return;
-
-            const reader = new FileReader();
-            reader.onload = function(evt) {
-                try {
-                    const imported = JSON.parse(evt.target.result);
-                    if (imported && imported.db) {
-                        if (confirm(`¿Deseas reemplazar la base de datos ${isDemoSession ? 'de prueba' : 'de producción'} con esta copia de seguridad?`)) {
-                            db = imported.db;
-                            saveStorage('company', db.company);
-                            saveStorage('users', db.users);
-                            saveStorage('clients', db.clients);
-                            saveStorage('products', db.products);
-                            saveStorage('documents', db.documents);
-
-                            alert('Base de datos cargada correctamente.');
-                            updateCompanySidebar();
-                            switchTab(activeTab);
-                        }
-                    } else {
-                        alert('El archivo cargado no tiene un formato válido de copia Gestiones FIP Pro.');
-                    }
-                } catch(err) {
-                    alert('Error al procesar el archivo JSON: ' + err.message);
+        window.loginAnonymously = async function() {
+            try {
+                showLoginStatus("Iniciando espacio privado de usuario...");
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    await signInWithCustomToken(auth, __initial_auth_token);
+                } else {
+                    await signInAnonymously(auth);
                 }
-            };
-            reader.readAsText(file);
-        }
-
-        // INICIALIZACIÓN
-        window.onload = function() {
-            updateCompanyLogoDisplay();
-            notifyLocalhostSync();
+            } catch (err) {
+                console.error("Error al iniciar sesión:", err);
+                alert("Error de conexión: " + err.message);
+                hideLoginStatus();
+            }
         };
 
-        // AUTENTICACIÓN DE USUARIOS
-        function handleLogin(e) {
-            e.preventDefault();
-            isDemoSession = false;
-            reloadDatabaseState();
+        function showLoginStatus(msg) {
+            const el = document.getElementById('login-status-msg');
+            if (el) { el.textContent = msg; el.classList.remove('hidden'); }
+        }
 
-            const code = document.getElementById('login-code').value.trim().toUpperCase();
-            const password = document.getElementById('login-password').value;
+        function hideLoginStatus() {
+            const el = document.getElementById('login-status-msg');
+            if (el) el.classList.add('hidden');
+        }
 
-            const user = db.users.find(u => u.code.toUpperCase() === code && u.password === password);
+        window.logout = async function() {
+            if (confirm('¿Cerrar tu sesión actual de Google Firebase?')) {
+                detachFirestoreListeners();
+                await signOut(auth);
+            }
+        };
+
+        // SUSCRIPCIÓN EN TIEMPO REAL FIRESTORE POR ID DE USUARIO (REGLA DE PRIVACIDAD MULTIUSUARIO)
+        onAuthStateChanged(auth, async (user) => {
             if (user) {
-                startSession(user, false);
+                window.currentUser = user;
+                window.userId = user.uid;
+
+                document.getElementById('login-screen').classList.add('hidden');
+                document.getElementById('main-app').classList.remove('hidden');
+
+                const name = user.displayName || (user.isAnonymous ? "Usuario Privado" : "Usuario Nube");
+                const email = user.email || (user.isAnonymous ? "Espacio encriptado privado" : user.uid);
+                
+                document.getElementById('user-display-name').textContent = name;
+                document.getElementById('user-display-email').textContent = email;
+
+                if (user.photoURL) {
+                    const img = document.getElementById('user-avatar-img');
+                    img.src = user.photoURL;
+                    img.classList.remove('hidden');
+                    document.getElementById('user-avatar-fallback').classList.add('hidden');
+                } else {
+                    document.getElementById('user-avatar-fallback').textContent = name.substring(0, 2).toUpperCase();
+                }
+
+                attachFirestoreListeners();
+                window.switchTab('dashboard');
             } else {
-                document.getElementById('login-error').classList.remove('hidden');
+                window.currentUser = null;
+                window.userId = null;
+                document.getElementById('main-app').classList.add('hidden');
+                document.getElementById('login-screen').classList.remove('hidden');
+                hideLoginStatus();
             }
+        });
+
+        function attachFirestoreListeners() {
+            if (!window.userId) return;
+
+            // Ruta estricta de aislamiento privado: /artifacts/{appId}/users/{userId}/{collectionName}
+            const companyDocRef = doc(db, 'artifacts', appId, 'users', window.userId, 'settings', 'company');
+            unsubscribeCompany = onSnapshot(companyDocRef, (snapshot) => {
+                if (snapshot.exists()) {
+                    window.userDb.company = snapshot.data();
+                }
+                window.updateCompanySidebar();
+                if (window.activeTab === 'company') window.populateCompanyForm();
+            }, (err) => console.error("Error al sincronizar Datos Empresa:", err));
+
+            const clientsColRef = collection(db, 'artifacts', appId, 'users', window.userId, 'clients');
+            unsubscribeClients = onSnapshot(clientsColRef, (snapshot) => {
+                window.userDb.clients = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
+                if (window.activeTab === 'clients') window.renderClientsTable();
+                if (window.activeTab === 'dashboard') window.renderDashboard();
+            }, (err) => console.error("Error al sincronizar Clientes:", err));
+
+            const productsColRef = collection(db, 'artifacts', appId, 'users', window.userId, 'products');
+            unsubscribeProducts = onSnapshot(productsColRef, (snapshot) => {
+                window.userDb.products = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
+                if (window.activeTab === 'inventory') window.renderInventoryTable();
+                if (window.activeTab === 'dashboard') window.renderDashboard();
+            }, (err) => console.error("Error al sincronizar Productos:", err));
+
+            const docsColRef = collection(db, 'artifacts', appId, 'users', window.userId, 'documents');
+            unsubscribeDocuments = onSnapshot(docsColRef, (snapshot) => {
+                window.userDb.documents = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
+                if (window.activeTab === 'documents') window.renderDocumentsTable();
+                if (window.activeTab === 'rectificativas') window.renderRectificativasTable();
+                if (window.activeTab === 'dashboard') window.renderDashboard();
+            }, (err) => console.error("Error al sincronizar Documentos:", err));
         }
 
-        function setDemoAdminSession() {
-            isDemoSession = true;
-            reloadDatabaseState();
-            
-            let demoUser = { code: "DEMO", name: "Demostración", role: "ADMIN" };
-            startSession(demoUser, true);
+        function detachFirestoreListeners() {
+            if (unsubscribeCompany) unsubscribeCompany();
+            if (unsubscribeClients) unsubscribeClients();
+            if (unsubscribeProducts) unsubscribeProducts();
+            if (unsubscribeDocuments) unsubscribeDocuments();
         }
 
-        function startSession(user, isDemo) {
-            currentUser = user;
-            isDemoSession = isDemo;
-            
-            const demoIndicator = document.getElementById('demo-mode-indicator');
-            if (isDemo) demoIndicator.classList.remove('hidden');
-            else demoIndicator.classList.add('hidden');
+        // ESCRITURAS EN GOOGLE FIRESTORE
+        window.saveCompanyDataToCloud = async function(companyData) {
+            if (!window.userId) return;
+            const companyDocRef = doc(db, 'artifacts', appId, 'users', window.userId, 'settings', 'company');
+            await setDoc(companyDocRef, companyData);
+        };
 
-            document.getElementById('login-screen').classList.add('hidden');
-            document.getElementById('main-app').classList.remove('hidden');
-            document.getElementById('user-display-name').textContent = user.name + (isDemo ? ' [DEMO]' : '');
-            document.getElementById('user-display-code').textContent = user.code;
-            document.getElementById('user-avatar').textContent = user.name.substring(0,2).toUpperCase();
-            
-            updateCompanySidebar();
-            switchTab('dashboard');
-        }
+        window.saveClientToCloud = async function(clientData) {
+            if (!window.userId) return;
+            const clientDocRef = doc(db, 'artifacts', appId, 'users', window.userId, 'clients', clientData.id);
+            await setDoc(clientDocRef, clientData);
+        };
 
-        function exitDemoMode() {
-            if (confirm('¿Deseas salir del modo demostración y volver a la pantalla de inicio de sesión?')) {
-                logout();
-            }
-        }
+        window.deleteClientFromCloud = async function(clientId) {
+            if (!window.userId) return;
+            const clientDocRef = doc(db, 'artifacts', appId, 'users', window.userId, 'clients', clientId);
+            await deleteDoc(clientDocRef);
+        };
 
-        function logout() {
-            currentUser = null;
-            isDemoSession = false;
-            reloadDatabaseState();
-            document.getElementById('main-app').classList.add('hidden');
-            document.getElementById('login-screen').classList.remove('hidden');
-            document.getElementById('login-form').reset();
-            document.getElementById('login-error').classList.add('hidden');
-        }
+        window.saveProductToCloud = async function(productData) {
+            if (!window.userId) return;
+            const productDocRef = doc(db, 'artifacts', appId, 'users', window.userId, 'products', productData.id);
+            await setDoc(productDocRef, productData);
+        };
 
-        // NAVEGACIÓN Y TABS
-        function switchTab(tabId) {
-            activeTab = tabId;
+        window.deleteProductFromCloud = async function(productId) {
+            if (!window.userId) return;
+            const productDocRef = doc(db, 'artifacts', appId, 'users', window.userId, 'products', productId);
+            await deleteDoc(productDocRef);
+        };
+
+        window.saveDocumentToCloud = async function(docData) {
+            if (!window.userId) return;
+            const documentDocRef = doc(db, 'artifacts', appId, 'users', window.userId, 'documents', docData.id);
+            await setDoc(documentDocRef, docData);
+        };
+
+        window.deleteDocumentFromCloud = async function(docId) {
+            if (!window.userId) return;
+            const documentDocRef = doc(db, 'artifacts', appId, 'users', window.userId, 'documents', docId);
+            await deleteDoc(documentDocRef);
+        };
+
+        // UI HELPERS & RENDERERS
+        window.switchTab = function(tabName) {
+            window.activeTab = tabName;
             document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
             document.querySelectorAll('.nav-btn').forEach(el => el.classList.remove('bg-slate-800', 'text-white'));
 
-            document.getElementById('tab-' + tabId).classList.remove('hidden');
-            const navBtn = document.getElementById('nav-' + tabId);
-            if (navBtn) navBtn.classList.add('bg-slate-800', 'text-white');
+            const targetTab = document.getElementById(`tab-${tabName}`);
+            const targetNav = document.getElementById(`nav-${tabName}`);
+            if (targetTab) targetTab.classList.remove('hidden');
+            if (targetNav) targetNav.classList.add('bg-slate-800', 'text-white');
 
-            const titles = {
+            const pageTitleMap = {
                 dashboard: 'Dashboard General',
-                documents: 'Gestión de Facturas y Presupuestos',
-                rectificativas: 'Facturas Rectificativas y Detección de Errores',
-                inventory: 'Inventario de Productos y Servicios',
-                clients: 'Cartera de Clientes',
-                company: 'Datos Fiscales y Logotipo de Mi Empresa',
-                users: 'Gestión de Usuarios y Seguridad'
+                documents: 'Facturas y Presupuestos',
+                rectificativas: 'Facturas Rectificativas (Art. 80 / Art. 89 LIVA)',
+                inventory: 'Inventario de Productos',
+                clients: 'Directorio de Clientes',
+                company: 'Datos Fiscales y Logotipo'
             };
-            document.getElementById('page-title').textContent = titles[tabId];
+            document.getElementById('page-title').textContent = pageTitleMap[tabName] || 'Gestión';
 
-            if (tabId === 'dashboard') renderDashboard();
-            if (tabId === 'documents') renderDocumentsTable();
-            if (tabId === 'rectificativas') renderRectificativasTable();
-            if (tabId === 'inventory') renderInventoryTable();
-            if (tabId === 'clients') renderClientsTable();
-            if (tabId === 'company') populateCompanyForm();
-            if (tabId === 'users') renderUsersTable();
-        }
+            if (tabName === 'dashboard') window.renderDashboard();
+            if (tabName === 'documents') window.renderDocumentsTable();
+            if (tabName === 'rectificativas') window.renderRectificativasTable();
+            if (tabName === 'inventory') window.renderInventoryTable();
+            if (tabName === 'clients') window.renderClientsTable();
+            if (tabName === 'company') window.populateCompanyForm();
+        };
 
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            sidebar.classList.toggle('-translate-x-full');
-        }
+        window.updateCompanySidebar = function() {
+            const comp = window.userDb.company || {};
+            const nameEl = document.getElementById('sidebar-company-name');
+            if (nameEl) nameEl.textContent = comp.name || "Mi Empresa";
 
-        // EMPRESA & LOGO
-        function updateCompanySidebar() {
-            document.getElementById('sidebar-company-name').textContent = db.company.name || "Mi Empresa";
-            updateCompanyLogoDisplay();
-        }
-
-        function updateCompanyLogoDisplay() {
             const logoImg = document.getElementById('sidebar-logo');
             const fallback = document.getElementById('sidebar-logo-fallback');
-            if (db.company.logo) {
-                logoImg.src = db.company.logo;
+
+            if (comp.logo) {
+                logoImg.src = comp.logo;
                 logoImg.classList.remove('hidden');
                 fallback.classList.add('hidden');
             } else {
                 logoImg.classList.add('hidden');
                 fallback.classList.remove('hidden');
             }
-        }
+        };
 
-        function populateCompanyForm() {
-            document.getElementById('company-name').value = db.company.name || '';
-            document.getElementById('company-cif').value = db.company.cif || '';
-            document.getElementById('company-address').value = db.company.address || '';
-            document.getElementById('company-cp').value = db.company.cp || '';
-            document.getElementById('company-city').value = db.company.city || '';
-            document.getElementById('company-province').value = db.company.province || '';
-            document.getElementById('company-phone').value = db.company.phone || '';
-            document.getElementById('company-email').value = db.company.email || '';
-            document.getElementById('company-iban').value = db.company.iban || '';
-            document.getElementById('company-logo-url').value = db.company.logo || '';
-            renderLogoPreview(db.company.logo);
-        }
+        window.renderDashboard = function() {
+            const docs = window.userDb.documents || [];
+            const clients = window.userDb.clients || [];
 
-        function renderLogoPreview(url) {
-            const img = document.getElementById('company-logo-preview');
-            const placeholder = document.getElementById('company-logo-placeholder');
-            if (url) {
-                img.src = url;
-                img.classList.remove('hidden');
-                placeholder.classList.add('hidden');
+            const totalBilled = docs.filter(d => d.type === 'FACTURA').reduce((acc, curr) => acc + (curr.total || 0), 0);
+            const rectCount = docs.filter(d => d.type === 'RECTIFICATIVA').length;
+            const pendingCount = docs.filter(d => d.type === 'PRESUPUESTO').length;
+
+            document.getElementById('dash-total-billed').textContent = totalBilled.toFixed(2) + ' €';
+            document.getElementById('dash-rect-count').textContent = rectCount;
+            document.getElementById('dash-pending-count').textContent = pendingCount;
+            document.getElementById('dash-clients-count').textContent = clients.length;
+
+            const table = document.getElementById('dash-recent-docs-table');
+            if (!table) return;
+            table.innerHTML = '';
+
+            const recentDocs = [...docs].sort((a,b) => new Date(b.date) - new Date(a.date)).slice(0, 5);
+            if (recentDocs.length === 0) {
+                table.innerHTML = `<tr><td colspan="5" class="py-4 text-center text-slate-400">Sin documentos registrados en tu nube.</td></tr>`;
+                return;
+            }
+
+            recentDocs.forEach(d => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td class="py-2.5 px-2 font-bold">${d.number}</td>
+                    <td class="py-2.5 px-2 text-slate-600">${d.clientName || '-'}</td>
+                    <td class="py-2.5 px-2 text-slate-500">${d.date}</td>
+                    <td class="py-2.5 px-2">
+                        <span class="px-2 py-0.5 rounded text-[10px] font-bold ${d.type === 'FACTURA' ? 'bg-emerald-100 text-emerald-700' : d.type === 'RECTIFICATIVA' ? 'bg-red-100 text-red-700' : 'bg-slate-100 text-slate-700'}">${d.type}</span>
+                    </td>
+                    <td class="py-2.5 px-2 text-right font-mono font-bold">${(d.total || 0).toFixed(2)} €</td>
+                `;
+                table.appendChild(tr);
+            });
+        };
+
+        window.renderDocumentsTable = function() {
+            const body = document.getElementById('documents-table-body');
+            if (!body) return;
+            body.innerHTML = '';
+
+            const queryText = (document.getElementById('doc-search-input')?.value || '').toLowerCase();
+            let docs = window.userDb.documents || [];
+
+            if (window.docFilter !== 'ALL') {
+                docs = docs.filter(d => d.type === window.docFilter);
+            }
+
+            if (queryText) {
+                docs = docs.filter(d => 
+                    (d.number && d.number.toLowerCase().includes(queryText)) ||
+                    (d.clientName && d.clientName.toLowerCase().includes(queryText)) ||
+                    (d.clientCif && d.clientCif.toLowerCase().includes(queryText))
+                );
+            }
+
+            if (docs.length === 0) {
+                body.innerHTML = `<tr><td colspan="6" class="py-6 text-center text-slate-400">No hay documentos que coincidan.</td></tr>`;
+                return;
+            }
+
+            docs.forEach(d => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td class="py-3 px-4 font-bold text-slate-900">
+                        <span class="px-2 py-0.5 rounded text-[10px] font-extrabold mr-1 ${d.type === 'FACTURA' ? 'bg-emerald-100 text-emerald-800' : d.type === 'RECTIFICATIVA' ? 'bg-red-100 text-red-800' : 'bg-slate-200 text-slate-800'}">${d.type}</span>
+                        ${d.number}
+                    </td>
+                    <td class="py-3 px-4">
+                        <p class="font-bold text-slate-800">${d.clientName || 'Sin cliente'}</p>
+                        <p class="text-[10px] text-slate-500 font-mono">${d.clientCif || ''}</p>
+                    </td>
+                    <td class="py-3 px-4 text-slate-600">${d.date}</td>
+                    <td class="py-3 px-4">
+                        <span class="text-[11px] font-semibold text-slate-600">${d.taxMode === 'SUJETO_PASIVO' ? 'Inversión Sujeto Pasivo (0%)' : 'IVA General'}</span>
+                    </td>
+                    <td class="py-3 px-4 text-right font-mono font-black text-slate-900">${(d.total || 0).toFixed(2)} €</td>
+                    <td class="py-3 px-4 text-center space-x-2">
+                        <button onclick="viewDocument('${d.id}')" title="Ver / Imprimir A4" class="p-1.5 text-brand-600 hover:bg-brand-50 rounded-lg"><i class="fa-solid fa-eye"></i></button>
+                        <button onclick="deleteDocConfirm('${d.id}')" title="Eliminar" class="p-1.5 text-red-600 hover:bg-red-50 rounded-lg"><i class="fa-solid fa-trash-can"></i></button>
+                    </td>
+                `;
+                body.appendChild(tr);
+            });
+        };
+
+        window.filterDocuments = function(type) {
+            window.docFilter = type;
+            ['all','factura','rectificativa','presupuesto'].forEach(t => {
+                const btn = document.getElementById(`filter-doc-${t}`);
+                if (btn) {
+                    if (t.toUpperCase() === type) {
+                        btn.className = "px-3.5 py-1.5 text-xs font-bold rounded-xl bg-brand-600 text-white";
+                    } else {
+                        btn.className = "px-3.5 py-1.5 text-xs font-bold rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200";
+                    }
+                }
+            });
+            window.renderDocumentsTable();
+        };
+
+        window.renderRectificativasTable = function() {
+            const body = document.getElementById('rectificativas-table-body');
+            if (!body) return;
+            body.innerHTML = '';
+
+            const rects = (window.userDb.documents || []).filter(d => d.type === 'RECTIFICATIVA');
+            if (rects.length === 0) {
+                body.innerHTML = `<tr><td colspan="6" class="py-6 text-center text-slate-400">No hay facturas rectificativas emitidas.</td></tr>`;
+                return;
+            }
+
+            rects.forEach(d => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td class="py-3 px-4 font-bold text-red-700">${d.number}</td>
+                    <td class="py-3 px-4 font-semibold text-slate-800">${d.rectifiedNumber || '-'}</td>
+                    <td class="py-3 px-4 text-slate-600">${d.rectifiedReason || 'Abono / Rectificación'}</td>
+                    <td class="py-3 px-4 font-bold text-slate-800">${d.clientName || '-'}</td>
+                    <td class="py-3 px-4 text-right font-mono font-bold text-red-600">${(d.total || 0).toFixed(2)} €</td>
+                    <td class="py-3 px-4 text-center space-x-2">
+                        <button onclick="viewDocument('${d.id}')" title="Ver / Imprimir A4" class="p-1.5 text-brand-600 hover:bg-brand-50 rounded-lg"><i class="fa-solid fa-eye"></i></button>
+                        <button onclick="deleteDocConfirm('${d.id}')" title="Eliminar" class="p-1.5 text-red-600 hover:bg-red-50 rounded-lg"><i class="fa-solid fa-trash-can"></i></button>
+                    </td>
+                `;
+                body.appendChild(tr);
+            });
+        };
+
+        window.renderInventoryTable = function() {
+            const body = document.getElementById('inventory-table-body');
+            if (!body) return;
+            body.innerHTML = '';
+
+            const queryText = (document.getElementById('inventory-search')?.value || '').toLowerCase();
+            let prods = window.userDb.products || [];
+
+            if (queryText) {
+                prods = prods.filter(p => 
+                    (p.number && p.number.toLowerCase().includes(queryText)) ||
+                    (p.ean && p.ean.toLowerCase().includes(queryText)) ||
+                    (p.name && p.name.toLowerCase().includes(queryText))
+                );
+            }
+
+            if (prods.length === 0) {
+                body.innerHTML = `<tr><td colspan="6" class="py-6 text-center text-slate-400">Sin artículos registrados.</td></tr>`;
+                return;
+            }
+
+            prods.forEach(p => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td class="py-3 px-4 font-bold text-slate-800">${p.number || '-'}</td>
+                    <td class="py-3 px-4 font-mono text-slate-600">${p.ean || '-'}</td>
+                    <td class="py-3 px-4 font-semibold text-slate-900">${p.name}</td>
+                    <td class="py-3 px-4 text-right font-mono font-bold text-slate-800">${(parseFloat(p.price) || 0).toFixed(2)} €</td>
+                    <td class="py-3 px-4 font-bold text-slate-600">${p.vat}%</td>
+                    <td class="py-3 px-4 text-center space-x-2">
+                        <button onclick="editProduct('${p.id}')" class="p-1.5 text-amber-600 hover:bg-amber-50 rounded-lg"><i class="fa-solid fa-pen"></i></button>
+                        <button onclick="deleteProductConfirm('${p.id}')" class="p-1.5 text-red-600 hover:bg-red-50 rounded-lg"><i class="fa-solid fa-trash-can"></i></button>
+                    </td>
+                `;
+                body.appendChild(tr);
+            });
+        };
+
+        window.renderClientsTable = function() {
+            const body = document.getElementById('clients-table-body');
+            if (!body) return;
+            body.innerHTML = '';
+
+            const queryText = (document.getElementById('clients-search')?.value || '').toLowerCase();
+            let clients = window.userDb.clients || [];
+
+            if (queryText) {
+                clients = clients.filter(c => 
+                    (c.name && c.name.toLowerCase().includes(queryText)) ||
+                    (c.cif && c.cif.toLowerCase().includes(queryText))
+                );
+            }
+
+            if (clients.length === 0) {
+                body.innerHTML = `<tr><td colspan="5" class="py-6 text-center text-slate-400">Sin clientes en el directorio.</td></tr>`;
+                return;
+            }
+
+            clients.forEach(c => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td class="py-3 px-4 font-bold text-slate-900">${c.name}</td>
+                    <td class="py-3 px-4 font-mono font-semibold text-slate-700">${c.cif}</td>
+                    <td class="py-3 px-4 text-slate-600">
+                        <p>${c.phone || '-'}</p>
+                        <p class="text-[11px] text-slate-400">${c.email || ''}</p>
+                    </td>
+                    <td class="py-3 px-4 text-slate-600">${c.city || ''} ${c.province ? '('+c.province+')' : ''}</td>
+                    <td class="py-3 px-4 text-center space-x-2">
+                        <button onclick="editClient('${c.id}')" class="p-1.5 text-indigo-600 hover:bg-indigo-50 rounded-lg"><i class="fa-solid fa-pen"></i></button>
+                        <button onclick="deleteClientConfirm('${c.id}')" class="p-1.5 text-red-600 hover:bg-red-50 rounded-lg"><i class="fa-solid fa-trash-can"></i></button>
+                    </td>
+                `;
+                body.appendChild(tr);
+            });
+        };
+
+        window.populateCompanyForm = function() {
+            const comp = window.userDb.company || {};
+            document.getElementById('company-name').value = comp.name || '';
+            document.getElementById('company-cif').value = comp.cif || '';
+            document.getElementById('company-address').value = comp.address || '';
+            document.getElementById('company-cp').value = comp.cp || '';
+            document.getElementById('company-city').value = comp.city || '';
+            document.getElementById('company-province').value = comp.province || '';
+            document.getElementById('company-phone').value = comp.phone || '';
+            document.getElementById('company-email').value = comp.email || '';
+            document.getElementById('company-iban').value = comp.iban || '';
+            document.getElementById('company-logo-url').value = comp.logo || '';
+
+            const logoPreview = document.getElementById('company-logo-preview');
+            const logoPlaceholder = document.getElementById('company-logo-placeholder');
+            if (comp.logo) {
+                logoPreview.src = comp.logo;
+                logoPreview.classList.remove('hidden');
+                logoPlaceholder.classList.add('hidden');
             } else {
-                img.src = '';
-                img.classList.add('hidden');
-                placeholder.classList.remove('hidden');
+                logoPreview.classList.add('hidden');
+                logoPlaceholder.classList.remove('hidden');
             }
-        }
+        };
 
-        function handleLogoUrlInput(url) {
-            db.company.logo = url;
-            renderLogoPreview(url);
-        }
-
-        function handleLogoFileUpload(e) {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(evt) {
-                    const base64 = evt.target.result;
-                    db.company.logo = base64;
-                    document.getElementById('company-logo-url').value = '';
-                    renderLogoPreview(base64);
-                };
-                reader.readAsDataURL(file);
-            }
-        }
-
-        function removeCompanyLogo() {
-            db.company.logo = '';
-            document.getElementById('company-logo-url').value = '';
-            document.getElementById('company-logo-file').value = '';
-            renderLogoPreview('');
-        }
-
-        function saveCompanyData(e) {
+        window.saveCompanyData = async function(e) {
             e.preventDefault();
-            db.company = {
+            const companyData = {
                 name: document.getElementById('company-name').value,
                 cif: document.getElementById('company-cif').value,
                 address: document.getElementById('company-address').value,
@@ -1390,172 +1375,74 @@
                 phone: document.getElementById('company-phone').value,
                 email: document.getElementById('company-email').value,
                 iban: document.getElementById('company-iban').value,
-                logo: db.company.logo || document.getElementById('company-logo-url').value
+                logo: document.getElementById('company-logo-url').value
             };
-            saveStorage('company', db.company);
-            updateCompanySidebar();
-            alert('Datos de la empresa y logotipo guardados correctamente.');
-        }
+            await window.saveCompanyDataToCloud(companyData);
+            alert("Datos de la empresa guardados en Firebase Cloud.");
+        };
 
-        // DASHBOARD
-        function renderDashboard() {
-            const invoices = db.documents.filter(d => d.type === 'FACTURA' || d.type === 'RECTIFICATIVA');
-            const totalBilled = invoices.reduce((acc, curr) => acc + curr.total, 0);
-            document.getElementById('dash-total-billed').textContent = totalBilled.toFixed(2) + ' €';
-            document.getElementById('dash-pending-count').textContent = db.documents.filter(d => d.type === 'PRESUPUESTO').length;
-            document.getElementById('dash-rect-count').textContent = db.documents.filter(d => d.type === 'RECTIFICATIVA').length;
-            document.getElementById('dash-clients-count').textContent = db.clients.length;
-            document.getElementById('dash-inventory-count').textContent = db.products.length;
+        window.handleLogoFileUpload = function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(evt) {
+                const base64 = evt.target.result;
+                document.getElementById('company-logo-url').value = base64;
+                window.handleLogoUrlInput(base64);
+            };
+            reader.readAsDataURL(file);
+        };
 
-            const table = document.getElementById('dash-recent-docs-table');
-            table.innerHTML = '';
-            const recents = [...db.documents].reverse().slice(0, 5);
-
-            if (recents.length === 0) {
-                table.innerHTML = `<tr><td colspan="5" class="py-4 text-center text-slate-400">No hay documentos registrados aún.</td></tr>`;
-                return;
+        window.handleLogoUrlInput = function(val) {
+            const logoPreview = document.getElementById('company-logo-preview');
+            const logoPlaceholder = document.getElementById('company-logo-placeholder');
+            if (val) {
+                logoPreview.src = val;
+                logoPreview.classList.remove('hidden');
+                logoPlaceholder.classList.add('hidden');
+            } else {
+                logoPreview.classList.add('hidden');
+                logoPlaceholder.classList.remove('hidden');
             }
+        };
 
-            recents.forEach(doc => {
-                const client = db.clients.find(c => c.id === doc.clientId) || { name: 'Cliente Eliminado' };
-                let badge = 'bg-slate-100 text-slate-800';
-                if (doc.type === 'FACTURA') badge = 'bg-emerald-100 text-emerald-800';
-                if (doc.type === 'RECTIFICATIVA') badge = 'bg-red-100 text-red-800';
+        window.removeCompanyLogo = function() {
+            document.getElementById('company-logo-url').value = '';
+            document.getElementById('company-logo-file').value = '';
+            window.handleLogoUrlInput('');
+        };
 
-                table.innerHTML += `
-                    <tr class="hover:bg-slate-50 transition cursor-pointer" onclick="viewDocument('${doc.id}')">
-                        <td class="py-3 px-2 font-bold"><span class="px-2 py-0.5 rounded text-[10px] ${badge} mr-1">${doc.type}</span> ${doc.number}</td>
-                        <td class="py-3 px-2 font-medium">${client.name}</td>
-                        <td class="py-3 px-2 text-slate-500">${doc.date}</td>
-                        <td class="py-3 px-2">${doc.taxMode === 'SUJETO_PASIVO' ? '<span class="text-amber-600 font-bold">IVA 0% (ISP)</span>' : 'IVA Ordinario'}</td>
-                        <td class="py-3 px-2 text-right font-black ${doc.total < 0 ? 'text-red-600' : 'text-slate-900'}">${doc.total.toFixed(2)} €</td>
-                    </tr>
-                `;
-            });
-        }
-
-        // GESTIÓN Y LISTADO DE DOCUMENTOS
-        function filterDocuments(type) {
-            activeDocFilter = type;
-            document.querySelectorAll('#tab-documents button[id^="filter-doc-"]').forEach(btn => {
-                btn.className = 'px-3.5 py-1.5 text-xs font-bold rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200';
-            });
-            const activeBtn = document.getElementById('filter-doc-' + type.toLowerCase());
-            if (activeBtn) activeBtn.className = 'px-3.5 py-1.5 text-xs font-bold rounded-xl bg-brand-600 text-white';
-            renderDocumentsTable();
-        }
-
-        function renderDocumentsTable() {
-            const query = (document.getElementById('doc-search-input')?.value || '').toLowerCase();
-            const table = document.getElementById('documents-table-body');
-            table.innerHTML = '';
-
-            let docs = [...db.documents];
-            if (activeDocFilter !== 'ALL') {
-                docs = docs.filter(d => d.type === activeDocFilter);
-            }
-
-            if (query) {
-                docs = docs.filter(d => {
-                    const client = db.clients.find(c => c.id === d.clientId) || {};
-                    return d.number.toLowerCase().includes(query) || (client.name && client.name.toLowerCase().includes(query)) || (client.cif && client.cif.toLowerCase().includes(query));
-                });
-            }
-
-            if (docs.length === 0) {
-                table.innerHTML = `<tr><td colspan="6" class="py-6 text-center text-slate-400">No hay documentos que coincidan.</td></tr>`;
-                return;
-            }
-
-            docs.reverse().forEach(doc => {
-                const client = db.clients.find(c => c.id === doc.clientId) || { name: 'Desconocido' };
-                let badgeClass = 'bg-slate-100 text-slate-700';
-                if (doc.type === 'FACTURA') badgeClass = 'bg-emerald-100 text-emerald-800';
-                if (doc.type === 'RECTIFICATIVA') badgeClass = 'bg-red-100 text-red-800';
-
-                table.innerHTML += `
-                    <tr class="hover:bg-slate-50">
-                        <td class="py-3.5 px-4 font-bold text-slate-900">
-                            <span class="px-2 py-0.5 rounded text-[10px] font-extrabold ${badgeClass} mr-1.5">${doc.type}</span>
-                            ${doc.number}
-                        </td>
-                        <td class="py-3.5 px-4 font-medium">${client.name}</td>
-                        <td class="py-3.5 px-4 text-slate-500">${doc.date}</td>
-                        <td class="py-3.5 px-4">
-                            ${doc.type === 'RECTIFICATIVA' ? `<span class="text-xs font-bold text-red-600">Rectifica: ${doc.rectifiedNumber || '-'}</span>` : (doc.taxMode === 'SUJETO_PASIVO' ? '<span class="text-amber-600 font-bold">IVA 0% (ISP)</span>' : 'General')}
-                        </td>
-                        <td class="py-3.5 px-4 text-right font-black ${doc.total < 0 ? 'text-red-600' : 'text-slate-900'}">${doc.total.toFixed(2)} €</td>
-                        <td class="py-3.5 px-4 text-center space-x-1">
-                            <button onclick="viewDocument('${doc.id}')" title="Ver / Imprimir" class="p-1.5 text-brand-600 hover:bg-brand-50 rounded-lg"><i class="fa-solid fa-eye"></i></button>
-                            ${doc.type === 'PRESUPUESTO' ? `<button onclick="convertPresupuestoToFactura('${doc.id}')" title="Convertir a Factura" class="p-1.5 text-emerald-600 hover:bg-emerald-50 rounded-lg"><i class="fa-solid fa-check-double"></i></button>` : ''}
-                            ${doc.type === 'FACTURA' ? `<button onclick="createRectificativaFromInvoice('${doc.id}')" title="Emitir Factura Rectificativa" class="p-1.5 text-red-600 hover:bg-red-50 rounded-lg"><i class="fa-solid fa-rotate-left"></i></button>` : ''}
-                            <button onclick="deleteDocument('${doc.id}')" title="Eliminar" class="p-1.5 text-slate-400 hover:text-red-600 rounded-lg"><i class="fa-solid fa-trash"></i></button>
-                        </td>
-                    </tr>
-                `;
-            });
-        }
-
-        // VISTA ESPECÍFICA DE FACTURAS RECTIFICATIVAS
-        function renderRectificativasTable() {
-            const table = document.getElementById('rectificativas-table-body');
-            table.innerHTML = '';
-
-            const rects = db.documents.filter(d => d.type === 'RECTIFICATIVA');
-            if (rects.length === 0) {
-                table.innerHTML = `<tr><td colspan="6" class="py-6 text-center text-slate-400">No se han emitido facturas rectificativas todavía.</td></tr>`;
-                return;
-            }
-
-            rects.reverse().forEach(doc => {
-                const client = db.clients.find(c => c.id === doc.clientId) || { name: 'Desconocido' };
-                table.innerHTML += `
-                    <tr class="hover:bg-slate-50">
-                        <td class="py-3.5 px-4 font-bold text-red-700 font-mono">${doc.number}</td>
-                        <td class="py-3.5 px-4 font-semibold text-slate-800">${doc.rectifiedNumber || '-'} (${doc.rectifiedDate || '-'})</td>
-                        <td class="py-3.5 px-4 text-xs text-slate-600">${doc.rectifiedReason || 'Sin motivo'}</td>
-                        <td class="py-3.5 px-4 font-medium text-slate-900">${client.name}</td>
-                        <td class="py-3.5 px-4 text-right font-black text-red-600">${doc.total.toFixed(2)} €</td>
-                        <td class="py-3.5 px-4 text-center space-x-1">
-                            <button onclick="viewDocument('${doc.id}')" title="Ver / Imprimir" class="p-1.5 text-brand-600 hover:bg-brand-50 rounded-lg"><i class="fa-solid fa-eye"></i></button>
-                            <button onclick="deleteDocument('${doc.id}')" title="Eliminar" class="p-1.5 text-slate-400 hover:text-red-600 rounded-lg"><i class="fa-solid fa-trash"></i></button>
-                        </td>
-                    </tr>
-                `;
-            });
-        }
-
-        function openClientModal(id = null) {
+        // GESTIÓN DE CLIENTES MODAL
+        window.openClientModal = function(client = null) {
             document.getElementById('client-form').reset();
-            document.getElementById('client-id').value = '';
-            document.getElementById('client-modal-title').textContent = id ? 'Editar Cliente' : 'Añadir Nuevo Cliente';
-            
-            if (id) {
-                const c = db.clients.find(item => item.id === id);
-                if (c) {
-                    document.getElementById('client-id').value = c.id;
-                    document.getElementById('c-fullname').value = c.name;
-                    document.getElementById('c-cif').value = c.cif;
-                    document.getElementById('c-phone').value = c.phone || '';
-                    document.getElementById('c-address').value = c.address || '';
-                    document.getElementById('c-cp').value = c.cp || '';
-                    document.getElementById('c-city').value = c.city || '';
-                    document.getElementById('c-province').value = c.province || '';
-                    document.getElementById('c-email').value = c.email || '';
-                }
+            if (client) {
+                document.getElementById('client-modal-title').textContent = "Editar Cliente";
+                document.getElementById('client-id').value = client.id;
+                document.getElementById('c-fullname').value = client.name || '';
+                document.getElementById('c-cif').value = client.cif || '';
+                document.getElementById('c-phone').value = client.phone || '';
+                document.getElementById('c-address').value = client.address || '';
+                document.getElementById('c-cp').value = client.cp || '';
+                document.getElementById('c-city').value = client.city || '';
+                document.getElementById('c-province').value = client.province || '';
+                document.getElementById('c-email').value = client.email || '';
+            } else {
+                document.getElementById('client-modal-title').textContent = "Nuevo Cliente";
+                document.getElementById('client-id').value = 'cli_' + Date.now();
             }
             document.getElementById('client-modal').classList.remove('hidden');
-        }
+        };
 
-        function closeClientModal() { document.getElementById('client-modal').classList.add('hidden'); }
+        window.closeClientModal = function() {
+            document.getElementById('client-modal').classList.add('hidden');
+        };
 
-        function saveClient(e) {
+        window.saveClient = async function(e) {
             e.preventDefault();
-            const id = document.getElementById('client-id').value || 'c_' + Date.now();
             const clientData = {
-                id: id,
+                id: document.getElementById('client-id').value,
                 name: document.getElementById('c-fullname').value,
-                cif: document.getElementById('c-cif').value.toUpperCase(),
+                cif: document.getElementById('c-cif').value,
                 phone: document.getElementById('c-phone').value,
                 address: document.getElementById('c-address').value,
                 cp: document.getElementById('c-cp').value,
@@ -1563,603 +1450,436 @@
                 province: document.getElementById('c-province').value,
                 email: document.getElementById('c-email').value
             };
+            await window.saveClientToCloud(clientData);
+            window.closeClientModal();
+        };
 
-            const idx = db.clients.findIndex(c => c.id === id);
-            if (idx >= 0) db.clients[idx] = clientData;
-            else db.clients.push(clientData);
+        window.editClient = function(id) {
+            const client = (window.userDb.clients || []).find(c => c.id === id);
+            if (client) window.openClientModal(client);
+        };
 
-            saveStorage('clients', db.clients);
-            closeClientModal();
-            renderClientsTable();
-        }
-
-        function editClient(id) { openClientModal(id); }
-
-        function deleteClient(id) {
-            if (confirm('¿Eliminar cliente seleccionado?')) {
-                db.clients = db.clients.filter(c => c.id !== id);
-                saveStorage('clients', db.clients);
-                renderClientsTable();
+        window.deleteClientConfirm = async function(id) {
+            if (confirm('¿Eliminar este cliente de tu Firebase Cloud?')) {
+                await window.deleteClientFromCloud(id);
             }
-        }
+        };
 
-        // GESTIÓN DE INVENTARIO Y PRODUCTOS
-        function renderInventoryTable() {
-            const query = document.getElementById('inventory-search').value.toLowerCase();
-            const table = document.getElementById('inventory-table-body');
-            table.innerHTML = '';
-            
-            const filtered = db.products.filter(p => p.name.toLowerCase().includes(query) || (p.ean && p.ean.toLowerCase().includes(query)) || (p.number && p.number.toLowerCase().includes(query)));
-            if (filtered.length === 0) {
-                table.innerHTML = `<tr><td colspan="6" class="py-6 text-center text-slate-400">No se encontraron artículos en el inventario.</td></tr>`;
-                return;
-            }
-
-            filtered.forEach(p => {
-                table.innerHTML += `
-                    <tr class="hover:bg-slate-50">
-                        <td class="py-3 px-4 font-mono font-bold text-slate-700">${p.number || '-'}</td>
-                        <td class="py-3 px-4 font-mono text-slate-600">${p.ean || '-'}</td>
-                        <td class="py-3 px-4 font-bold text-slate-900">${p.name}</td>
-                        <td class="py-3 px-4 text-right font-black">${parseFloat(p.price).toFixed(2)} €</td>
-                        <td class="py-3 px-4">${p.vat}% ${p.vat === 0 ? '(Inversión Sujeto Pasivo)' : ''}</td>
-                        <td class="py-3 px-4 text-center space-x-2">
-                            <button onclick="editProduct('${p.id}')" class="p-1.5 text-amber-600 hover:bg-amber-50 rounded-lg"><i class="fa-solid fa-pen"></i></button>
-                            <button onclick="deleteProduct('${p.id}')" class="p-1.5 text-red-600 hover:bg-red-50 rounded-lg"><i class="fa-solid fa-trash"></i></button>
-                        </td>
-                    </tr>
-                `;
-            });
-        }
-
-        function openProductModal(id = null) {
+        // GESTIÓN DE PRODUCTOS MODAL
+        window.openProductModal = function(prod = null) {
             document.getElementById('product-form').reset();
-            document.getElementById('p-id').value = '';
-            document.getElementById('product-modal-title').textContent = id ? 'Editar Artículo' : 'Añadir Nuevo Artículo';
-            
-            if (id) {
-                const p = db.products.find(item => item.id === id);
-                if (p) {
-                    document.getElementById('p-id').value = p.id;
-                    document.getElementById('p-number').value = p.number || '';
-                    document.getElementById('p-ean').value = p.ean || '';
-                    document.getElementById('p-name').value = p.name;
-                    document.getElementById('p-price').value = p.price;
-                    document.getElementById('p-vat').value = p.vat;
-                }
+            if (prod) {
+                document.getElementById('product-modal-title').textContent = "Editar Artículo";
+                document.getElementById('p-id').value = prod.id;
+                document.getElementById('p-number').value = prod.number || '';
+                document.getElementById('p-ean').value = prod.ean || '';
+                document.getElementById('p-name').value = prod.name || '';
+                document.getElementById('p-price').value = prod.price || '';
+                document.getElementById('p-vat').value = prod.vat || 21;
+            } else {
+                document.getElementById('product-modal-title').textContent = "Nuevo Artículo";
+                document.getElementById('p-id').value = 'prod_' + Date.now();
             }
             document.getElementById('product-modal').classList.remove('hidden');
-        }
+        };
 
-        function closeProductModal() { document.getElementById('product-modal').classList.add('hidden'); }
+        window.closeProductModal = function() {
+            document.getElementById('product-modal').classList.add('hidden');
+        };
 
-        function saveProduct(e) {
+        window.saveProduct = async function(e) {
             e.preventDefault();
-            const id = document.getElementById('p-id').value || 'p_' + Date.now();
-            const productData = {
-                id: id,
-                number: document.getElementById('p-number').value.toUpperCase(),
-                ean: document.getElementById('p-ean').value.trim(),
+            const prodData = {
+                id: document.getElementById('p-id').value,
+                number: document.getElementById('p-number').value,
+                ean: document.getElementById('p-ean').value,
                 name: document.getElementById('p-name').value,
                 price: parseFloat(document.getElementById('p-price').value) || 0,
-                vat: parseInt(document.getElementById('p-vat').value)
+                vat: parseInt(document.getElementById('p-vat').value) || 21
             };
+            await window.saveProductToCloud(prodData);
+            window.closeProductModal();
+        };
 
-            const idx = db.products.findIndex(p => p.id === id);
-            if (idx >= 0) db.products[idx] = productData;
-            else db.products.push(productData);
+        window.editProduct = function(id) {
+            const prod = (window.userDb.products || []).find(p => p.id === id);
+            if (prod) window.openProductModal(prod);
+        };
 
-            saveStorage('products', db.products);
-            closeProductModal();
-            renderInventoryTable();
-        }
-
-        function editProduct(id) { openProductModal(id); }
-
-        function deleteProduct(id) {
-            if (confirm('¿Eliminar artículo del inventario?')) {
-                db.products = db.products.filter(p => p.id !== id);
-                saveStorage('products', db.products);
-                renderInventoryTable();
+        window.deleteProductConfirm = async function(id) {
+            if (confirm('¿Eliminar este artículo del inventario de Firebase?')) {
+                await window.deleteProductFromCloud(id);
             }
-        }
+        };
 
-        // GESTIÓN DE USUARIOS
-        function renderUsersTable() {
-            const table = document.getElementById('users-table-body');
-            if (!table) return;
-            table.innerHTML = '';
+        // EDITOR Y CREACIÓN DE DOCUMENTOS (FACTURAS / RECTIFICATIVAS / PRESUPUESTOS)
+        let currentEditingDocId = null;
+        let docLinesState = [];
 
-            db.users.forEach(u => {
-                table.innerHTML += `
-                    <tr class="hover:bg-slate-50">
-                        <td class="py-3.5 px-4 font-mono font-bold text-slate-800">${u.code}</td>
-                        <td class="py-3.5 px-4 font-semibold text-slate-900">${u.name}</td>
-                        <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-[10px] font-bold ${u.role === 'ADMIN' ? 'bg-purple-100 text-purple-800' : 'bg-slate-100 text-slate-700'}">${u.role || 'USUARIO'}</span></td>
-                        <td class="py-3.5 px-4 text-center">
-                            ${u.code !== 'ADMIN01' ? `<button onclick="deleteUser('${u.code}')" class="p-1.5 text-red-600 hover:bg-red-50 rounded-lg"><i class="fa-solid fa-trash"></i></button>` : '<span class="text-xs text-slate-400 italic">Principal</span>'}
-                        </td>
-                    </tr>
-                `;
-            });
-        }
+        window.openDocumentEditor = function(type = 'FACTURA') {
+            currentEditingDocId = 'doc_' + Date.now();
+            docLinesState = [];
 
-        function openUserModal() {
-            document.getElementById('user-form').reset();
-            document.getElementById('user-modal').classList.remove('hidden');
-        }
-
-        function closeUserModal() {
-            document.getElementById('user-modal').classList.add('hidden');
-        }
-
-        function saveUser(e) {
-            e.preventDefault();
-            const code = document.getElementById('u-code').value.trim().toUpperCase();
-            const name = document.getElementById('u-name').value.trim();
-            const password = document.getElementById('u-password').value;
-
-            if (db.users.some(u => u.code === code)) {
-                alert('El código de usuario ya existe.');
-                return;
-            }
-
-            db.users.push({ code, name, password, role: 'USUARIO' });
-            saveStorage('users', db.users);
-            closeUserModal();
-            renderUsersTable();
-        }
-
-        function deleteUser(code) {
-            if (confirm(`¿Eliminar usuario ${code}?`)) {
-                db.users = db.users.filter(u => u.code !== code);
-                saveStorage('users', db.users);
-                renderUsersTable();
-            }
-        }
-
-        function renderClientsTable() {
-            const query = (document.getElementById('clients-search')?.value || '').toLowerCase();
-            const table = document.getElementById('clients-table-body');
-            if (!table) return;
-            table.innerHTML = '';
-
-            const filtered = db.clients.filter(c => c.name.toLowerCase().includes(query) || c.cif.toLowerCase().includes(query));
-            if (filtered.length === 0) {
-                table.innerHTML = `<tr><td colspan="5" class="py-6 text-center text-slate-400">No se encontraron clientes.</td></tr>`;
-                return;
-            }
-
-            filtered.forEach(c => {
-                table.innerHTML += `
-                    <tr class="hover:bg-slate-50">
-                        <td class="py-3.5 px-4 font-bold text-slate-900">${c.name}</td>
-                        <td class="py-3.5 px-4 font-mono font-semibold text-slate-700">${c.cif}</td>
-                        <td class="py-3.5 px-4 text-xs text-slate-600">${c.phone || '-'} <br><span class="text-slate-400">${c.email || ''}</span></td>
-                        <td class="py-3.5 px-4 text-xs text-slate-600">${c.city || '-'} ${c.province ? '(' + c.province + ')' : ''}</td>
-                        <td class="py-3.5 px-4 text-center space-x-2">
-                            <button onclick="editClient('${c.id}')" class="p-1.5 text-indigo-600 hover:bg-indigo-50 rounded-lg"><i class="fa-solid fa-pen"></i></button>
-                            <button onclick="deleteClient('${c.id}')" class="p-1.5 text-red-600 hover:bg-red-50 rounded-lg"><i class="fa-solid fa-trash"></i></button>
-                        </td>
-                    </tr>
-                `;
-            });
-        }
-
-        // EDITOR Y CÁLCULOS DE FACTURAS/PRESUPUESTOS/RECTIFICATIVAS
-        let activeDocLines = [];
-
-        function openDocumentEditor(type = 'FACTURA') {
             document.getElementById('doc-type').value = type;
             document.getElementById('doc-date').value = new Date().toISOString().split('T')[0];
             document.getElementById('doc-notes').value = '';
-            document.getElementById('doc-global-discount').value = 0;
+            document.getElementById('doc-global-discount').value = '0';
             document.getElementById('doc-tax-mode').value = 'GENERAL';
-            
-            populateClientDropdown();
-            populateRectifiedInvoicesDropdown();
-            onDocTypeChange();
 
-            activeDocLines = [];
-            addDocItemLine(); // Una línea por defecto
-            
+            const prefix = type === 'FACTURA' ? 'F' : type === 'RECTIFICATIVA' ? 'R' : 'P';
+            const num = Math.floor(100 + Math.random() * 900);
+            document.getElementById('doc-number').value = `${prefix}-2026-${num}`;
+
+            // Llenar select clientes
+            const clientSelect = document.getElementById('doc-client-select');
+            clientSelect.innerHTML = '<option value="">-- Seleccionar Cliente --</option>';
+            (window.userDb.clients || []).forEach(c => {
+                const opt = document.createElement('option');
+                opt.value = c.id;
+                opt.textContent = `${c.name} (${c.cif})`;
+                clientSelect.appendChild(opt);
+            });
+
+            // Llenar select facturas rectificadas
+            const rectTarget = document.getElementById('doc-rectified-target');
+            rectTarget.innerHTML = '<option value="">-- Seleccionar Factura --</option>';
+            (window.userDb.documents || []).filter(d => d.type === 'FACTURA').forEach(f => {
+                const opt = document.createElement('option');
+                opt.value = f.id;
+                opt.textContent = `${f.number} - ${f.clientName} (${f.date})`;
+                rectTarget.appendChild(opt);
+            });
+
+            window.onDocTypeChange();
+            window.addDocItemLine();
             document.getElementById('doc-editor-modal').classList.remove('hidden');
-        }
+        };
 
-        function onDocTypeChange() {
+        window.closeDocumentEditor = function() {
+            document.getElementById('doc-editor-modal').classList.add('hidden');
+        };
+
+        window.onDocTypeChange = function() {
             const type = document.getElementById('doc-type').value;
             const rectFields = document.getElementById('rectificativa-fields');
-            
             if (type === 'RECTIFICATIVA') {
                 rectFields.classList.remove('hidden');
             } else {
                 rectFields.classList.add('hidden');
             }
-            updateDocNumberPlaceholder();
-        }
+        };
 
-        function populateRectifiedInvoicesDropdown() {
-            const targetSelect = document.getElementById('doc-rectified-target');
-            targetSelect.innerHTML = '<option value="">-- Seleccionar Factura Original --</option>';
-            const invoices = db.documents.filter(d => d.type === 'FACTURA');
-            invoices.forEach(inv => {
-                targetSelect.innerHTML += `<option value="${inv.id}">${inv.number} (${inv.date}) - Total: ${inv.total.toFixed(2)} €</option>`;
-            });
-        }
-
-        function onSelectRectifiedInvoice(invoiceId) {
-            if (!invoiceId) return;
-            const inv = db.documents.find(d => d.id === invoiceId);
-            if (inv) {
-                document.getElementById('doc-client-select').value = inv.clientId;
-                fillDocClientData();
-                document.getElementById('doc-tax-mode').value = inv.taxMode || 'GENERAL';
-                document.getElementById('doc-global-discount').value = inv.globalDiscount || 0;
-
-                // Duplicar líneas en negativo para abono/rectificación
-                activeDocLines = inv.items.map(item => ({
-                    productId: item.productId || '',
-                    description: `[RECTIFICACIÓN] ${item.description}`,
-                    quantity: -Math.abs(item.quantity),
-                    price: item.price,
-                    discount: item.discount || 0,
-                    vat: item.vat
-                }));
-                renderDocItemsLines();
-            }
-        }
-
-        function createRectificativaFromInvoice(docId) {
-            openDocumentEditor('RECTIFICATIVA');
-            document.getElementById('doc-rectified-target').value = docId;
-            onSelectRectifiedInvoice(docId);
-        }
-
-        function updateDocNumberPlaceholder() {
-            const type = document.getElementById('doc-type').value;
-            const year = new Date().getFullYear();
-            const count = db.documents.filter(d => d.type === type).length + 1;
-            
-            let prefix = 'F';
-            if (type === 'PRESUPUESTO') prefix = 'P';
-            if (type === 'RECTIFICATIVA') prefix = 'R';
-
-            document.getElementById('doc-number').value = `${prefix}-${year}-${String(count).padStart(3, '0')}`;
-        }
-
-        function populateClientDropdown() {
-            const select = document.getElementById('doc-client-select');
-            select.innerHTML = '<option value="">-- Seleccionar Cliente de la Lista --</option>';
-            db.clients.forEach(c => {
-                select.innerHTML += `<option value="${c.id}">${c.name} (${c.cif})</option>`;
-            });
-            document.getElementById('doc-client-preview').classList.add('hidden');
-        }
-
-        function fillDocClientData() {
-            const id = document.getElementById('doc-client-select').value;
+        window.fillDocClientData = function() {
+            const cid = document.getElementById('doc-client-select').value;
             const preview = document.getElementById('doc-client-preview');
-            if (!id) { preview.classList.add('hidden'); return; }
+            const client = (window.userDb.clients || []).find(c => c.id === cid);
 
-            const c = db.clients.find(item => item.id === id);
-            if (c) {
-                document.getElementById('doc-c-name').textContent = c.name;
-                document.getElementById('doc-c-cif').textContent = 'CIF: ' + c.cif;
-                document.getElementById('doc-c-address').textContent = `${c.address || ''} ${c.cp || ''} ${c.city || ''}`;
-                document.getElementById('doc-c-phone').textContent = 'Tel: ' + (c.phone || '-');
+            if (client) {
+                document.getElementById('doc-c-name').textContent = client.name;
+                document.getElementById('doc-c-cif').textContent = `CIF: ${client.cif}`;
+                document.getElementById('doc-c-address').textContent = `${client.address || ''} ${client.city ? '- ' + client.city : ''}`;
                 preview.classList.remove('hidden');
+            } else {
+                preview.classList.add('hidden');
             }
-        }
+        };
 
-        function addDocItemLine() {
-            activeDocLines.push({
-                productId: '',
+        window.onSelectRectifiedInvoice = function(invId) {
+            const target = (window.userDb.documents || []).find(d => d.id === invId);
+            if (target) {
+                if (target.clientId) {
+                    document.getElementById('doc-client-select').value = target.clientId;
+                    window.fillDocClientData();
+                }
+                if (target.items && target.items.length > 0) {
+                    docLinesState = JSON.parse(JSON.stringify(target.items));
+                    window.renderDocItemsLines();
+                }
+            }
+        };
+
+        window.addDocItemLine = function() {
+            docLinesState.push({
                 description: '',
-                quantity: 1,
+                qty: 1,
                 price: 0,
                 discount: 0,
                 vat: 21
             });
-            renderDocItemsLines();
-        }
+            window.renderDocItemsLines();
+        };
 
-        function removeDocItemLine(index) {
-            if (activeDocLines.length > 1) {
-                activeDocLines.splice(index, 1);
-                renderDocItemsLines();
-            }
-        }
+        window.removeDocItemLine = function(idx) {
+            docLinesState.splice(idx, 1);
+            if (docLinesState.length === 0) window.addDocItemLine();
+            else window.renderDocItemsLines();
+        };
 
-        function renderDocItemsLines() {
-            const tbody = document.getElementById('doc-items-body');
-            tbody.innerHTML = '';
+        window.renderDocItemsLines = function() {
+            const body = document.getElementById('doc-items-body');
+            if (!body) return;
+            body.innerHTML = '';
+
             const isSujetoPasivo = document.getElementById('doc-tax-mode').value === 'SUJETO_PASIVO';
 
-            activeDocLines.forEach((line, index) => {
-                const effectiveVat = isSujetoPasivo ? 0 : line.vat;
-                const sub = (line.quantity * line.price) * (1 - (line.discount / 100));
+            docLinesState.forEach((line, idx) => {
+                if (isSujetoPasivo) line.vat = 0;
 
-                tbody.innerHTML += `
-                    <tr>
-                        <td class="py-2 px-2">
-                            <select onchange="onSelectProductInLine(${index}, this.value)" class="w-full p-1 border rounded bg-white text-xs mb-1">
-                                <option value="">-- Seleccionar de inventario --</option>
-                                ${db.products.map(p => `<option value="${p.id}" ${p.id === line.productId ? 'selected' : ''}>[${p.number || 'N/A'}] EAN:${p.ean || '-'} - ${p.name}</option>`).join('')}
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td class="py-2 px-3">
+                        <div class="flex items-center gap-2">
+                            <select onchange="window.selectProductForLine(${idx}, this.value)" class="w-24 p-1 bg-slate-50 border border-slate-200 rounded text-[11px]">
+                                <option value="">catálogo...</option>
+                                ${(window.userDb.products || []).map(p => `<option value="${p.id}">${p.number || p.name}</option>`).join('')}
                             </select>
-                            <input type="text" value="${line.description}" oninput="activeDocLines[${index}].description = this.value; calculateDocTotals();" placeholder="Descripción del concepto" class="w-full p-1 border rounded text-xs">
-                        </td>
-                        <td class="py-2 px-2">
-                            <input type="number" min="1" value="${line.quantity}" onchange="activeDocLines[${index}].quantity = parseFloat(this.value)||1; calculateDocTotals();" class="w-16 p-1 border rounded text-center text-xs">
-                        </td>
-                        <td class="py-2 px-2">
-                            <input type="number" step="0.01" value="${line.price}" onchange="activeDocLines[${index}].price = parseFloat(this.value)||0; calculateDocTotals();" class="w-20 p-1 border rounded text-right text-xs">
-                        </td>
-                        <td class="py-2 px-2">
-                            <input type="number" min="0" max="100" value="${line.discount}" onchange="activeDocLines[${index}].discount = parseFloat(this.value)||0; calculateDocTotals();" class="w-14 p-1 border rounded text-center text-xs">
-                        </td>
-                        <td class="py-2 px-2 text-center">
-                            ${isSujetoPasivo ? '<span class="font-bold text-amber-600">0% (ISP)</span>' : `
-                                <select onchange="activeDocLines[${index}].vat = parseInt(this.value); calculateDocTotals();" class="p-1 border rounded text-xs">
-                                    <option value="21" ${line.vat === 21 ? 'selected' : ''}>21%</option>
-                                    <option value="10" ${line.vat === 10 ? 'selected' : ''}>10%</option>
-                                    <option value="4" ${line.vat === 4 ? 'selected' : ''}>4%</option>
-                                    <option value="0" ${line.vat === 0 ? 'selected' : ''}>0%</option>
-                                </select>
-                            `}
-                        </td>
-                        <td class="py-2 px-2 text-right font-bold text-slate-800">
-                            ${sub.toFixed(2)} €
-                        </td>
-                        <td class="py-2 px-1 text-center">
-                            <button onclick="removeDocItemLine(${index})" class="text-red-500 hover:text-red-700"><i class="fa-solid fa-trash-can"></i></button>
-                        </td>
-                    </tr>
+                            <input type="text" value="${line.description}" oninput="docLinesState[${idx}].description = this.value" placeholder="Descripción..." class="w-full p-1 bg-slate-50 border border-slate-200 rounded text-xs">
+                        </div>
+                    </td>
+                    <td class="py-2 px-3 text-center">
+                        <input type="number" min="1" value="${line.qty}" onchange="docLinesState[${idx}].qty = parseFloat(this.value)||1; window.calculateDocTotals();" class="w-14 p-1 bg-slate-50 border border-slate-200 rounded text-center text-xs">
+                    </td>
+                    <td class="py-2 px-3 text-right">
+                        <input type="number" step="0.01" value="${line.price}" onchange="docLinesState[${idx}].price = parseFloat(this.value)||0; window.calculateDocTotals();" class="w-20 p-1 bg-slate-50 border border-slate-200 rounded text-right text-xs">
+                    </td>
+                    <td class="py-2 px-3 text-center">
+                        <input type="number" min="0" max="100" value="${line.discount}" onchange="docLinesState[${idx}].discount = parseFloat(this.value)||0; window.calculateDocTotals();" class="w-14 p-1 bg-slate-50 border border-slate-200 rounded text-center text-xs">
+                    </td>
+                    <td class="py-2 px-3 text-center">
+                        <select onchange="docLinesState[${idx}].vat = parseInt(this.value); window.calculateDocTotals();" ${isSujetoPasivo ? 'disabled' : ''} class="w-16 p-1 bg-slate-50 border border-slate-200 rounded text-xs font-bold">
+                            <option value="21" ${line.vat === 21 ? 'selected' : ''}>21%</option>
+                            <option value="10" ${line.vat === 10 ? 'selected' : ''}>10%</option>
+                            <option value="4" ${line.vat === 4 ? 'selected' : ''}>4%</option>
+                            <option value="0" ${line.vat === 0 ? 'selected' : ''}>0%</option>
+                        </select>
+                    </td>
+                    <td class="py-2 px-3 text-right font-mono font-bold" id="line-total-${idx}">0.00 €</td>
+                    <td class="py-2 px-2 text-center">
+                        <button type="button" onclick="window.removeDocItemLine(${idx})" class="text-red-500 hover:text-red-700"><i class="fa-solid fa-xmark"></i></button>
+                    </td>
                 `;
+                body.appendChild(tr);
             });
-            calculateDocTotals();
-        }
 
-        function onSelectProductInLine(index, productId) {
-            const product = db.products.find(p => p.id === productId);
-            if (product) {
-                activeDocLines[index].productId = product.id;
-                activeDocLines[index].description = product.name;
-                activeDocLines[index].price = product.price;
-                activeDocLines[index].vat = product.vat;
-                renderDocItemsLines();
+            window.calculateDocTotals();
+        };
+
+        window.selectProductForLine = function(idx, prodId) {
+            const prod = (window.userDb.products || []).find(p => p.id === prodId);
+            if (prod) {
+                docLinesState[idx].description = prod.name;
+                docLinesState[idx].price = prod.price;
+                docLinesState[idx].vat = prod.vat;
+                window.renderDocItemsLines();
             }
-        }
+        };
 
-        function calculateDocTotals() {
-            const isSujetoPasivo = document.getElementById('doc-tax-mode').value === 'SUJETO_PASIVO';
-            const globalDiscountPercent = parseFloat(document.getElementById('doc-global-discount').value) || 0;
+        window.calculateDocTotals = function() {
+            let subtotal = 0;
+            const vatTotals = { 21: 0, 10: 0, 4: 0, 0: 0 };
+            const globalDiscountPercent = parseFloat(document.getElementById('doc-global-discount')?.value) || 0;
 
-            let rawSubtotal = 0;
-            const vatBases = {};
+            docLinesState.forEach((line, idx) => {
+                const lineBase = line.qty * line.price;
+                const lineDiscount = lineBase * (line.discount / 100);
+                const lineNet = lineBase - lineDiscount;
+                subtotal += lineNet;
 
-            activeDocLines.forEach(line => {
-                const lineSubtotal = (line.quantity * line.price) * (1 - (line.discount / 100));
-                rawSubtotal += lineSubtotal;
+                const lineEl = document.getElementById(`line-total-${idx}`);
+                if (lineEl) lineEl.textContent = lineNet.toFixed(2) + ' €';
 
-                const vatRate = isSujetoPasivo ? 0 : line.vat;
-                if (!vatBases[vatRate]) vatBases[vatRate] = 0;
-                vatBases[vatRate] += lineSubtotal;
+                const lineAfterGlobal = lineNet * (1 - globalDiscountPercent / 100);
+                const vatAmount = lineAfterGlobal * (line.vat / 100);
+                vatTotals[line.vat] = (vatTotals[line.vat] || 0) + vatAmount;
             });
 
-            const globalDiscountAmount = rawSubtotal * (globalDiscountPercent / 100);
-            const totalTaxBase = rawSubtotal - globalDiscountAmount;
+            const globalDiscountAmount = subtotal * (globalDiscountPercent / 100);
+            const taxBase = subtotal - globalDiscountAmount;
+            const totalVat = Object.values(vatTotals).reduce((a, b) => a + b, 0);
+            const grandTotal = taxBase + totalVat;
 
-            let totalVatAmount = 0;
+            document.getElementById('doc-calc-subtotal').textContent = subtotal.toFixed(2) + ' €';
+            document.getElementById('doc-calc-discount').textContent = '-' + globalDiscountAmount.toFixed(2) + ' €';
+            document.getElementById('doc-calc-taxbase').textContent = taxBase.toFixed(2) + ' €';
+            document.getElementById('doc-calc-total').textContent = grandTotal.toFixed(2) + ' €';
+
             const vatRowsContainer = document.getElementById('doc-calc-vat-rows');
             vatRowsContainer.innerHTML = '';
-
-            Object.keys(vatBases).forEach(rateStr => {
-                const rate = parseFloat(rateStr);
-                const baseProp = vatBases[rate] * (1 - (globalDiscountPercent / 100));
-                const vatQuota = baseProp * (rate / 100);
-                totalVatAmount += vatQuota;
-
-                vatRowsContainer.innerHTML += `
-                    <div class="flex justify-between items-center text-xs text-slate-600">
-                        <span>IVA (${rate}% sobre ${baseProp.toFixed(2)} €):</span>
-                        <span class="font-bold text-slate-800">${vatQuota.toFixed(2)} €</span>
-                    </div>
-                `;
+            Object.keys(vatTotals).forEach(vatRate => {
+                if (vatTotals[vatRate] > 0 || vatRate === '0') {
+                    const row = document.createElement('div');
+                    row.className = 'flex justify-between items-center text-xs text-slate-600';
+                    row.innerHTML = `<span>Cuota IVA ${vatRate}%:</span><span class="font-bold">${vatTotals[vatRate].toFixed(2)} €</span>`;
+                    vatRowsContainer.appendChild(row);
+                }
             });
+        };
 
-            const totalFinal = totalTaxBase + totalVatAmount;
+        window.saveDocument = async function() {
+            const clientSelect = document.getElementById('doc-client-select');
+            const clientId = clientSelect.value;
+            const client = (window.userDb.clients || []).find(c => c.id === clientId);
 
-            document.getElementById('doc-calc-subtotal').textContent = rawSubtotal.toFixed(2) + ' €';
-            document.getElementById('doc-calc-discount').textContent = '-' + globalDiscountAmount.toFixed(2) + ' €';
-            document.getElementById('doc-calc-taxbase').textContent = totalTaxBase.toFixed(2) + ' €';
-            document.getElementById('doc-calc-total').textContent = totalFinal.toFixed(2) + ' €';
-        }
+            if (!clientId || !client) {
+                alert("Por favor, selecciona un cliente para el documento.");
+                return;
+            }
 
-        function saveDocument() {
-            const clientId = document.getElementById('doc-client-select').value;
-            if (!clientId) { alert('Por favor, selecciona un cliente.'); return; }
-            
-            const number = document.getElementById('doc-number').value.trim();
-            if (!number) { alert('Introduce un número de documento.'); return; }
-
-            const type = document.getElementById('doc-type').value;
+            const docType = document.getElementById('doc-type').value;
+            const docNumber = document.getElementById('doc-number').value;
+            const docDate = document.getElementById('doc-date').value;
             const taxMode = document.getElementById('doc-tax-mode').value;
+            const notes = document.getElementById('doc-notes').value;
             const globalDiscount = parseFloat(document.getElementById('doc-global-discount').value) || 0;
 
             let rectifiedNumber = '';
-            let rectifiedDate = '';
             let rectifiedReason = '';
-
-            if (type === 'RECTIFICATIVA') {
-                const rectTargetId = document.getElementById('doc-rectified-target').value;
+            if (docType === 'RECTIFICATIVA') {
+                const targetId = document.getElementById('doc-rectified-target').value;
+                const target = (window.userDb.documents || []).find(d => d.id === targetId);
+                rectifiedNumber = target ? target.number : '';
                 rectifiedReason = document.getElementById('doc-rectified-reason').value;
-                if (rectTargetId) {
-                    const origInv = db.documents.find(d => d.id === rectTargetId);
-                    if (origInv) {
-                        rectifiedNumber = origInv.number;
-                        rectifiedDate = origInv.date;
-                    }
-                }
             }
 
             let subtotal = 0;
-            const linesData = activeDocLines.map(line => {
-                const lineSub = (line.quantity * line.price) * (1 - (line.discount / 100));
-                subtotal += lineSub;
-                return { ...line, subtotal: lineSub };
+            docLinesState.forEach(line => {
+                subtotal += (line.qty * line.price) * (1 - line.discount / 100);
             });
-
-            const discountAmount = subtotal * (globalDiscount / 100);
-            const taxBase = subtotal - discountAmount;
-
-            let vatTotal = 0;
-            linesData.forEach(l => {
-                const rate = taxMode === 'SUJETO_PASIVO' ? 0 : l.vat;
-                const baseProp = l.subtotal * (1 - (globalDiscount / 100));
-                vatTotal += baseProp * (rate / 100);
+            const taxBase = subtotal * (1 - globalDiscount / 100);
+            let totalVat = 0;
+            docLinesState.forEach(line => {
+                const lineNet = (line.qty * line.price) * (1 - line.discount / 100) * (1 - globalDiscount / 100);
+                totalVat += lineNet * (line.vat / 100);
             });
+            const grandTotal = taxBase + totalVat;
 
-            const total = taxBase + vatTotal;
-
-            const newDoc = {
-                id: 'doc_' + Date.now(),
-                type: type,
-                number: number,
-                date: document.getElementById('doc-date').value,
-                clientId: clientId,
+            const docData = {
+                id: currentEditingDocId,
+                type: docType,
+                number: docNumber,
+                date: docDate,
                 taxMode: taxMode,
+                clientId: clientId,
+                clientName: client.name,
+                clientCif: client.cif,
+                clientAddress: client.address,
+                clientCity: client.city,
+                rectifiedNumber: rectifiedNumber,
+                rectifiedReason: rectifiedReason,
+                items: docLinesState,
                 globalDiscount: globalDiscount,
                 subtotal: subtotal,
                 taxBase: taxBase,
-                vatTotal: vatTotal,
-                total: total,
-                notes: document.getElementById('doc-notes').value,
-                items: linesData,
-                rectifiedNumber: rectifiedNumber,
-                rectifiedDate: rectifiedDate,
-                rectifiedReason: rectifiedReason,
-                createdBy: currentUser ? currentUser.code : 'ADMIN'
+                totalVat: totalVat,
+                total: grandTotal,
+                notes: notes,
+                createdAt: new Date().toISOString()
             };
 
-            db.documents.push(newDoc);
-            saveStorage('documents', db.documents);
+            await window.saveDocumentToCloud(docData);
+            window.closeDocumentEditor();
+        };
 
-            closeDocumentEditor();
-            switchTab(type === 'RECTIFICATIVA' ? 'rectificativas' : 'documents');
-            viewDocument(newDoc.id);
-        }
-
-        function closeDocumentEditor() {
-            document.getElementById('doc-editor-modal').classList.add('hidden');
-        }
-
-        function convertPresupuestoToFactura(docId) {
-            const p = db.documents.find(d => d.id === docId);
-            if (!p) return;
-
-            const year = new Date().getFullYear();
-            const count = db.documents.filter(d => d.type === 'FACTURA').length + 1;
-            const facturaNumber = `F-${year}-${String(count).padStart(3, '0')}`;
-
-            const newFactura = {
-                ...p,
-                id: 'doc_' + Date.now(),
-                type: 'FACTURA',
-                number: facturaNumber,
-                date: new Date().toISOString().split('T')[0]
-            };
-
-            db.documents.push(newFactura);
-            saveStorage('documents', db.documents);
-            renderDocumentsTable();
-            viewDocument(newFactura.id);
-        }
-
-        function deleteDocument(docId) {
-            if (confirm('¿Eliminar el documento seleccionado?')) {
-                db.documents = db.documents.filter(d => d.id !== docId);
-                saveStorage('documents', db.documents);
-                renderDocumentsTable();
-                if (activeTab === 'rectificativas') renderRectificativasTable();
+        window.deleteDocConfirm = async function(id) {
+            if (confirm('¿Eliminar este documento de tu Firebase Cloud?')) {
+                await window.deleteDocumentFromCloud(id);
             }
-        }
+        };
 
-        // VISTA E IMPRESIÓN OFICIAL DEL DOCUMENTO
-        function viewDocument(docId) {
-            const doc = db.documents.find(d => d.id === docId);
+        // VISUALIZADOR E IMPRESIÓN A4
+        window.viewDocument = function(docId) {
+            const doc = (window.userDb.documents || []).find(d => d.id === docId);
             if (!doc) return;
 
-            const client = db.clients.find(c => c.id === doc.clientId) || {};
+            const comp = window.userDb.company || {};
+            document.getElementById('print-company-name').textContent = comp.name || 'Mi Empresa';
+            document.getElementById('print-company-cif').textContent = comp.cif ? `CIF: ${comp.cif}` : '';
+            document.getElementById('print-company-address').textContent = comp.address || '';
+            document.getElementById('print-company-city-cp').textContent = `${comp.cp || ''} ${comp.city || ''} ${comp.province ? '('+comp.province+')' : ''}`;
+            document.getElementById('print-company-phone-email').textContent = `${comp.phone || ''} ${comp.email ? '| ' + comp.email : ''}`;
 
-            // 1. LOGO DE EMPRESA (ARRIBA A LA DERECHA)
             const printLogo = document.getElementById('print-logo');
             const printLogoFallback = document.getElementById('print-logo-fallback');
-            if (db.company.logo) {
-                printLogo.src = db.company.logo;
+            if (comp.logo) {
+                printLogo.src = comp.logo;
                 printLogo.classList.remove('hidden');
                 printLogoFallback.classList.add('hidden');
             } else {
                 printLogo.classList.add('hidden');
                 printLogoFallback.classList.remove('hidden');
-                document.getElementById('print-company-name-fallback').textContent = db.company.name || "MI EMPRESA";
+                document.getElementById('print-company-name-fallback').textContent = comp.name || 'MI EMPRESA';
             }
 
-            // 2. DATOS DE MI EMPRESA (IZQUIERDA)
-            document.getElementById('print-company-name').textContent = db.company.name || '';
-            document.getElementById('print-company-cif').textContent = 'CIF/NIF: ' + (db.company.cif || '');
-            document.getElementById('print-company-address').textContent = db.company.address || '';
-            document.getElementById('print-company-city-cp').textContent = `${db.company.cp || ''} ${db.company.city || ''} ${db.company.province ? '(' + db.company.province + ')' : ''}`;
-            document.getElementById('print-company-phone-email').textContent = `Tel: ${db.company.phone || '-'} | Email: ${db.company.email || '-'}`;
-
-            // 3. DATOS DOCUMENTO Y CLIENTE
-            const typeBadge = document.getElementById('print-doc-type-badge');
-            typeBadge.textContent = doc.type;
-            if (doc.type === 'RECTIFICATIVA') {
-                typeBadge.className = "inline-block px-3 py-1 bg-red-600 text-white font-extrabold text-xs rounded-md uppercase tracking-wider mb-2";
-            } else {
-                typeBadge.className = "inline-block px-3 py-1 bg-slate-900 text-white font-extrabold text-xs rounded-md uppercase tracking-wider mb-2";
-            }
-
+            document.getElementById('print-doc-type-badge').textContent = doc.type;
             document.getElementById('print-doc-number').textContent = doc.number;
             document.getElementById('print-doc-date').textContent = doc.date;
 
-            // DETALLES FACTURA RECTIFICATIVA
-            const rectDetails = document.getElementById('print-rectificativa-details');
-            if (doc.type === 'RECTIFICATIVA') {
-                document.getElementById('print-rect-orig-num').textContent = doc.rectifiedNumber || 'N/A';
-                document.getElementById('print-rect-orig-date').textContent = doc.rectifiedDate || '-';
-                document.getElementById('print-rect-reason').textContent = doc.rectifiedReason || 'Rectificación / Abono';
-                rectDetails.classList.remove('hidden');
-            } else {
-                rectDetails.classList.add('hidden');
-            }
+            document.getElementById('print-client-name').textContent = doc.clientName || 'Sin Nombre';
+            document.getElementById('print-client-cif').textContent = doc.clientCif ? `CIF: ${doc.clientCif}` : '';
+            document.getElementById('print-client-address').textContent = doc.clientAddress || '';
+            document.getElementById('print-client-city').textContent = doc.clientCity || '';
 
-            document.getElementById('print-client-name').textContent = client.name || 'Cliente sin nombre';
-            document.getElementById('print-client-cif').textContent = 'CIF / NIF: ' + (client.cif || '-');
-            document.getElementById('print-client-address').textContent = client.address || '';
-            document.getElementById('print-client-city').textContent = `${client.cp || ''} ${client.city || ''} ${client.province ? '(' + client.province + ')' : ''}`;
-            document.getElementById('print-client-contact').textContent = `Tel: ${client.phone || '-'} | Email: ${client.email || '-'}`;
-
-            // 4. LÍNEAS DE ARTÍCULOS
-            const itemsTable = document.getElementById('print-doc-items');
-            itemsTable.innerHTML = '';
-            const isSujetoPasivo = doc.taxMode === 'SUJETO_PASIVO';
-
-            doc.items.forEach(item => {
-                const rate = isSujetoPasivo ? 0 : item.vat;
-                itemsTable.innerHTML += `
-                    <tr>
-                        <td class="py-2.5 px-3 font-semibold text-slate-800">${item.description}</td>
-                        <td class="py-2.5 px-3 text-center">${item.quantity}</td>
-                        <td class="py-2.5 px-3 text-right">${parseFloat(item.price).toFixed(2)} €</td>
-                        <td class="py-2.5 px-3 text-center">${item.discount > 0 ? item.discount + '%' : '-'}</td>
-                        <td class="py-2.5 px-3 text-center font-bold">${rate}%</td>
-                        <td class="py-2.5 px-3 text-right font-black ${item.subtotal < 0 ? 'text-red-600' : ''}">${item.subtotal.toFixed(2)} €</td>
-                    </tr>
+            const itemsBody = document.getElementById('print-doc-items');
+            itemsBody.innerHTML = '';
+            (doc.items || []).forEach(item => {
+                const tr = document.createElement('tr');
+                const net = (item.qty * item.price) * (1 - item.discount / 100);
+                tr.innerHTML = `
+                    <td class="py-2 px-3 font-semibold">${item.description}</td>
+                    <td class="py-2 px-3 text-center">${item.qty}</td>
+                    <td class="py-2 px-3 text-right font-mono">${(item.price || 0).toFixed(2)} €</td>
+                    <td class="py-2 px-3 text-center">${item.discount}%</td>
+                    <td class="py-2 px-3 text-center font-bold">${item.vat}%</td>
+                    <td class="py-2 px-3 text-right font-mono font-bold">${net.toFixed(2)} €</td>
                 `;
+                itemsBody.appendChild(tr);
             });
 
-            // 5. OBS E IBAN
+            document.getElementById('print-subtotal').textContent = (doc.subtotal || 0).toFixed(2) + ' €';
+            if (doc.globalDiscount > 0) {
+                document.getElementById('print-discount-row').classList.remove('hidden');
+                document.getElementById('print-discount').textContent = `-${(doc.subtotal * doc.globalDiscount / 100).toFixed(2)} € (${doc.globalDiscount}%)`;
+            } else {
+                document.getElementById('print-discount-row').classList.add('hidden');
+            }
+            document.getElementById('print-taxbase').textContent = (doc.taxBase || 0).toFixed(2) + ' €';
+
+            const vatBreakdown = document.getElementById('print-vat-breakdown');
+            vatBreakdown.innerHTML = '';
+            const vatTotals = {};
+            (doc.items || []).forEach(item => {
+                const net = (item.qty * item.price) * (1 - item.discount / 100) * (1 - (doc.globalDiscount || 0) / 100);
+                vatTotals[item.vat] = (vatTotals[item.vat] || 0) + (net * (item.vat / 100));
+            });
+            Object.keys(vatTotals).forEach(v => {
+                const d = document.createElement('div');
+                d.className = 'flex justify-between';
+                d.innerHTML = `<span>Cuota IVA ${v}%:</span><span class="font-bold">${vatTotals[v].toFixed(2)} €</span>`;
+                vatBreakdown.appendChild(d);
+            });
+
+            document.getElementById('print-total').textContent = (doc.total || 0).toFixed(2) + ' €';
+
+            const rectDetails = document.getElementById('print-rectificativa-details');
+            const rectNotice = document.getElementById('print-rectificativa-notice');
+            if (doc.type === 'RECTIFICATIVA') {
+                document.getElementById('print-rect-orig-num').textContent = doc.rectifiedNumber || '-';
+                document.getElementById('print-rect-orig-date').textContent = doc.date;
+                document.getElementById('print-rect-reason').textContent = doc.rectifiedReason || 'Modificación Base Imponible';
+                rectDetails.classList.remove('hidden');
+                rectNotice.classList.remove('hidden');
+            } else {
+                rectDetails.classList.add('hidden');
+                rectNotice.classList.add('hidden');
+            }
+
+            const sujetoNotice = document.getElementById('print-sujeto-pasivo-notice');
+            if (doc.taxMode === 'SUJETO_PASIVO') {
+                sujetoNotice.classList.remove('hidden');
+            } else {
+                sujetoNotice.classList.add('hidden');
+            }
+
             const notesContainer = document.getElementById('print-notes-container');
             if (doc.notes) {
                 document.getElementById('print-notes').textContent = doc.notes;
@@ -2168,72 +1888,29 @@
                 notesContainer.classList.add('hidden');
             }
 
-            if (db.company.iban) {
-                document.getElementById('print-company-iban').textContent = db.company.iban;
-                document.getElementById('print-iban-container').classList.remove('hidden');
+            const ibanContainer = document.getElementById('print-iban-container');
+            if (comp.iban) {
+                document.getElementById('print-company-iban').textContent = comp.iban;
+                ibanContainer.classList.remove('hidden');
             } else {
-                document.getElementById('print-iban-container').classList.add('hidden');
+                ibanContainer.classList.add('hidden');
             }
-
-            // 6. TOTALES Y DESGLOSE IVA
-            document.getElementById('print-subtotal').textContent = doc.subtotal.toFixed(2) + ' €';
-
-            const discountRow = document.getElementById('print-discount-row');
-            if (doc.globalDiscount > 0) {
-                const discAmt = doc.subtotal * (doc.globalDiscount / 100);
-                document.getElementById('print-discount').textContent = `-${discAmt.toFixed(2)} € (${doc.globalDiscount}%)`;
-                discountRow.classList.remove('hidden');
-            } else {
-                discountRow.classList.add('hidden');
-            }
-
-            document.getElementById('print-taxbase').textContent = doc.taxBase.toFixed(2) + ' €';
-
-            // Desglose IVA
-            const vatBreakdown = document.getElementById('print-vat-breakdown');
-            vatBreakdown.innerHTML = '';
-            const vatBases = {};
-
-            doc.items.forEach(l => {
-                const rate = isSujetoPasivo ? 0 : l.vat;
-                if (!vatBases[rate]) vatBases[rate] = 0;
-                vatBases[rate] += l.subtotal;
-            });
-
-            Object.keys(vatBases).forEach(rateStr => {
-                const rate = parseFloat(rateStr);
-                const baseProp = vatBases[rate] * (1 - ((doc.globalDiscount || 0) / 100));
-                const quota = baseProp * (rate / 100);
-                vatBreakdown.innerHTML += `
-                    <div class="flex justify-between">
-                        <span>Cuota IVA (${rate}% sobre ${baseProp.toFixed(2)} €):</span>
-                        <span class="font-bold">${quota.toFixed(2)} €</span>
-                    </div>
-                `;
-            });
-
-            document.getElementById('print-total').textContent = doc.total.toFixed(2) + ' €';
-
-            // LEYENDAS LEGALES
-            const spNotice = document.getElementById('print-sujeto-pasivo-notice');
-            const rectNotice = document.getElementById('print-rectificativa-notice');
-
-            if (isSujetoPasivo) spNotice.classList.remove('hidden');
-            else spNotice.classList.add('hidden');
-
-            if (doc.type === 'RECTIFICATIVA') rectNotice.classList.remove('hidden');
-            else rectNotice.classList.add('hidden');
 
             document.getElementById('document-view-modal').classList.remove('hidden');
-        }
+        };
 
-        function closeDocumentView() {
+        window.closeDocumentView = function() {
             document.getElementById('document-view-modal').classList.add('hidden');
-        }
+        };
 
-        function printInvoice() {
+        window.printInvoice = function() {
             window.print();
-        }
+        };
+
+        window.toggleSidebar = function() {
+            const sb = document.getElementById('sidebar');
+            if (sb) sb.classList.toggle('-translate-x-full');
+        };
     </script>
 </body>
 </html>
